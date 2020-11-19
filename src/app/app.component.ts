@@ -12,8 +12,11 @@ export class AppComponent implements OnInit {
   constructor(private _bggApiService: BggApiService) {}
 
   ngOnInit() {
-    this._bggApiService.getBGGCollection().subscribe(data => {
-      console.log(data);
+    this._bggApiService.getBGGCollection().subscribe(stringXmlData => {
+      // console.log(stringXmlData);
+      this._bggApiService.parseBGGCollectionXML(stringXmlData).then(xmlData => {
+        console.log(xmlData);
+      })
     });
   }
 }

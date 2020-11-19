@@ -47,3 +47,5 @@ Thumbs.db
 
 # Config-files
 config.json
+debug.log
+package-lock.json
