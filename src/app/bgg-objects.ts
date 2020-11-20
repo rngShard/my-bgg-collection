@@ -98,7 +98,7 @@ export class BggBoardgameThing implements BggObject {
           break;
         }
         default: { 
-          console.log("(!) Invalid name for BGG-object-poll found!"); 
+          console.log("(!) Invalid name for BGG-object-poll found!", poll['$']['name']); 
           break;
        }
       }
@@ -133,8 +133,17 @@ export class BggBoardgameThing implements BggObject {
           publishers.push(link['$']['value']);
           break;
         }
+        case 'boardgameintegration': {   // Ignore ...
+          break;
+        }
+        case 'boardgamecompilation': {   // Ignore ...
+          break;
+        }
+        case 'boardgameexpansion': {   // Ignore ...
+          break;
+        }
         default: {
-          console.log("(!) Invalid name for BGG-object-link found!"); 
+          console.log("(!) Invalid name for BGG-object-link found!", link['$']['type']); 
           break;
         }
       }

@@ -48,13 +48,38 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
+td {
+  span {
+    padding-right: .5em !important;
+  }
+}
 td.thumbnail {
   width: 10em;
   text-align: center;
+  padding-right: 0;
 
   img {
     max-height: 4em;
     max-width: 9em;
     margin: .5em;
+  }
+}
+
+mat-grid-tile:not(.image) {
+  overflow: auto;
+
+  p {
+    max-height: 10em;
+    margin-top: 1.5em;
+  }
+
+  mat-chip-list {
+    max-height: 10em;
+    margin: 0 1em;
+
+    mat-chip {
+      max-width: 10em;
+      height: auto;
+    }
   }
 }
