@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BggApiService } from './bgg-api.service';
+import { BggBoardgame } from './bgg-objects';
+import Config from '../../config.json';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mbgc-app';
+  username: String;
+  bggUserURL: String;
+  boardgames: BggBoardgame[];
+  
+  constructor(private _bggApiService: BggApiService) {
+    this.username = Config.bgg.username;
+    this.bggUserURL = `https://boardgamegeek.com/user/${Config.bgg.username}`;
+  }
 }
