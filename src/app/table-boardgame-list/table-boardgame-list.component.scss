@@ -64,6 +64,10 @@ td.thumbnail {
     margin: .5em;
   }
 }
+td.num {
+  width: 6em;
+  text-align: center;
+}
 
 mat-grid-tile:not(.image) {
   overflow: auto;

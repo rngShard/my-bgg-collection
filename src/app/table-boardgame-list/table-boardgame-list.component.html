@@ -32,6 +32,10 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Player age [Years] </th>
       <td mat-cell *matCellDef="let row"> {{row.playerAge}} </td>
     </ng-container>
+    <ng-container matColumnDef="numPlays">   <!-- TODO: allow toggling -->
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Num. plays </th>
+      <td class="num" mat-cell *matCellDef="let row"> {{row.numPlays}} </td>
+    </ng-container>
 
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplay.length">
@@ -59,7 +63,7 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
               <ul>
-                <li> Logged plays: TODO </li>
+                <li> Logged plays: {{row.numPlays}} </li>
                 <!-- <li> My Rating: TODO </li> -->
               </ul>
               <!-- TODO: allow logging new play from here -->

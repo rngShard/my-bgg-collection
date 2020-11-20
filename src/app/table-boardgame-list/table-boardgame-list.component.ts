@@ -25,7 +25,7 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   preordered: BggBoardgame[] = [];
 
   dataSource: MatTableDataSource<BggBoardgameThing>;
-  columnsToDisplay = ['thumbnail', 'name', 'numPlayersRecommended', 'playingTime'];
+  columnsToDisplay = ['thumbnail', 'name', 'numPlayersRecommended', 'playingTime', 'numPlays'];
   expandedRow: BggBoardgameThing | null;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -67,6 +67,7 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
       }
       if (game.status.own) {
         this._bggApiService.getBGGBoardgame(game.objectid).then((gameThing: BggBoardgameThing) => {
+          gameThing.numPlays = game.numPlays;
           this.own.push(gameThing);
           this.dataSource.data = this.own;
         });

@@ -69,6 +69,7 @@ export class BggBoardgameThing implements BggObject {
   designers: String[];
   artists: String[];
   publishers: String[];
+  numPlays?: Number;
 
   constructor(BggXmlApiItemObj) {    
     this.objectid = +BggXmlApiItemObj['$']['id'];
