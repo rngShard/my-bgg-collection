@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { TableBoardgameListComponent } from './table-boardgame-list/table-boardgame-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TableBoardgameListComponent
   ],
   imports: [
     BrowserModule,

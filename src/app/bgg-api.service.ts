@@ -19,7 +19,7 @@ export class BggApiService {
     });
   }
 
-  parseBGGCollectionXML(data) {  
+  parseBGGCollectionXML(data): Promise<BggBoardgame[]> {  
     return new Promise(resolve => {
       let k: string | number, arr = [];
       let parser = new xml2js.Parser({
