@@ -1,8 +1,10 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { BggBoardgame } from '../bgg-objects';
+import { BggApiService } from '../bgg-api.service';
 
 @Component({
   selector: 'app-table-boardgame-list',
@@ -16,31 +18,44 @@ import { MatTableDataSource } from '@angular/material/table';
     ]),
   ],
 })
-export class TableBoardgameListComponent implements AfterViewInit {
-  dataSource: MatTableDataSource<PeriodicElement>;
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
-  expandedElement: PeriodicElement | null;
+export class TableBoardgameListComponent implements OnInit, AfterViewInit {
+  boardgames: BggBoardgame[];
+
+  dataSource: MatTableDataSource<BggBoardgame>;
+  columnsToDisplay = ['name', 'yearPublished'];
+  expandedRow: BggBoardgame | null;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
  
-  constructor() {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private _bggApiService: BggApiService) {
+    this.boardgames = [];
+    this.dataSource = new MatTableDataSource(this.boardgames);
   }
   
+  ngOnInit() {
+    this._bggApiService.getBGGCollection().subscribe(stringXmlData => {
+      this._bggApiService.parseBGGCollectionXML(stringXmlData).then((xmlData: BggBoardgame[]) => {
+        this.boardgames = xmlData;
+        this.dataSource.data = this.boardgames;
+        console.log(`App retrieved ${this.boardgames.length} boardgames.`)
+      })
+    });
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 }
 
 

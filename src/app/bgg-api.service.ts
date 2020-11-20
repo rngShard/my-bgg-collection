@@ -13,8 +13,11 @@ export class BggApiService {
 
   constructor(private _http: HttpClient) {}
 
-  getBGGCollection() {
-    return this._http.get(`${this.BGG_API_ENDPOINT}/collection?username=${Config.bgg.username}`, {
+  getBGGCollection(excludeExpansions: Boolean = true) {
+    let url = `${this.BGG_API_ENDPOINT}/collection?username=${Config.bgg.username}`;
+    if (excludeExpansions) { url += "&excludesubtype=boardgameexpansion"}
+    
+    return this._http.get(url, {
       responseType: 'text'
     });
   }
