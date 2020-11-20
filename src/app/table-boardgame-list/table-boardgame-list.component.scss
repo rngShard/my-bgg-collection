@@ -47,3 +47,14 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-description-attribution {
   opacity: 0.5;
 }
+
+td.thumbnail {
+  width: 10em;
+  text-align: center;
+
+  img {
+    max-height: 4em;
+    max-width: 9em;
+    margin: .5em;
+  }
+}

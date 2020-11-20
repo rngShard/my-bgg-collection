@@ -25,7 +25,7 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   preordered: BggBoardgame[] = [];
 
   dataSource: MatTableDataSource<BggBoardgameThing>;
-  columnsToDisplay = ['name', 'yearPublished'];
+  columnsToDisplay = ['thumbnail', 'name', 'yearPublished', 'numPlayersRecommended', 'playingTime'];
   expandedRow: BggBoardgameThing | null;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
