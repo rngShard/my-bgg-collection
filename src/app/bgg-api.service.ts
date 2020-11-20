@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import xml2js from 'xml2js';  
 
 import Config from '../../config.json';
-import { BggBoardgame } from './bgg-objects';
+import { BggBoardgame, BggBoardgameThing } from './bgg-objects';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +14,17 @@ export class BggApiService {
 
   constructor(private _http: HttpClient) {}
 
-  getBGGCollection(excludeExpansions: Boolean = true) {
+  getBGGCollection(excludeExpansions: Boolean = true, excludeWishlist: Boolean = true): Observable<any> {
     let url = `${this.BGG_API_ENDPOINT}/collection?username=${Config.bgg.username}`;
     if (excludeExpansions) { url += "&excludesubtype=boardgameexpansion"}
+    if (excludeWishlist) { url += "&wishlist=0"}
     
     return this._http.get(url, {
       responseType: 'text'
     });
   }
 
-  parseBGGCollectionXML(data): Promise<BggBoardgame[]> {  
+  parseBGGCollectionXML(data): Promise<BggBoardgame[]> {
     return new Promise(resolve => {
       let k: string | number, arr = [];
       let parser = new xml2js.Parser({
@@ -39,5 +41,29 @@ export class BggApiService {
         resolve(arr);  
       });  
     });  
+  }
+
+  getBGGBoardgame(objectid: Number): Promise<BggBoardgameThing> {
+    return new Promise(resolve => {
+      let url = `${this.BGG_API_ENDPOINT}/thing?id=${objectid}`;
+
+      this._http.get(url, {
+        responseType: 'text'
+      }).subscribe(stringXmlData => {
+        let k: string | number;
+        let thing: BggBoardgameThing;
+        let parser = new xml2js.Parser({
+          trim: true,  
+          explicitArray: true  
+        });  
+        parser.parseString(stringXmlData, function (err, result) {
+          let items = result.items.item;
+          let i = 0;
+          let item = items[i];
+          let thing = new BggBoardgameThing(item);
+          resolve(thing);
+        });
+      })
+    });
   }
 }
