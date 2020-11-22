@@ -48,11 +48,6 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
-td {
-  span {
-    padding-right: .5em !important;
-  }
-}
 td.thumbnail {
   width: 10em;
   text-align: center;
@@ -64,13 +59,18 @@ td.thumbnail {
     margin: .5em;
   }
 }
-td.num {
-  width: 6em;
+th.attrs, td.attrs {
+  max-width: 6em;
   text-align: center;
 }
 
-mat-grid-tile:not(.image) {
+mat-grid-tile {
   overflow: auto;
+
+  img {
+    max-height: 15em;
+    max-width: 80%;
+  }
 
   p {
     max-height: 10em;
@@ -82,8 +82,15 @@ mat-grid-tile:not(.image) {
     margin: 0 1em;
 
     mat-chip {
-      max-width: 10em;
-      height: auto;
+      max-width: 8em;
+      // height: auto;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    mat-chip:hover {
+      overflow: visible;
+      z-index: 100;
     }
   }
 }
