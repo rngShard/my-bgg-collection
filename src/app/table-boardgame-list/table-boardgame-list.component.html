@@ -55,13 +55,16 @@
                 <li *ngIf="row.playingTimeMin != row.playingTimeMax"> Playing time: {{row.playingTimeMin}} - {{row.playingTimeMax}} min </li>
                 <li *ngIf="row.playingTimeMin == row.playingTimeMax"> Playing time: {{row.playingTimeMin}} min </li>
                 <li *ngIf="row.playerAge != ''"> Player age: {{row.playerAge}} </li>
+                <li>
+                  <a href="https://boardgamegeek.com/boardgame/{{row.objectid}}" target="_blank"> &#64; BoardGameGeek </a>
+                </li>
               </ul>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
               <ul>
-                <li>
-                  <a href="https://boardgamegeek.com/boardgame/{{row.objectid}}" target="_blank"> &#64; BoardGameGeek </a>
-                </li>
+                <li> Rating: {{row.ratingAverage}} / 10 </li>
+                <li> Weight: {{row.weightAverage}} / 5 </li>
+                <li> Rank: {{row.rank}} </li>
                 <li> Logged plays: {{row.numPlays}} </li>
                 <!-- <li> My Rating: TODO </li> -->
               </ul>

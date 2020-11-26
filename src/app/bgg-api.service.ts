@@ -46,6 +46,7 @@ export class BggApiService {
   getBGGBoardgame(objectid: Number): Promise<BggBoardgameThing> {
     return new Promise(resolve => {
       let url = `${this.BGG_API_ENDPOINT}/thing?id=${objectid}`;
+      url += "&stats=1";
 
       this._http.get(url, {
         responseType: 'text'
