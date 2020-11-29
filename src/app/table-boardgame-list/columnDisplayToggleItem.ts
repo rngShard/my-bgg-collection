@@ -1,11 +1,11 @@
 export class ColumnDisplayToggleItem {
   colName: string;
-  displayname: string;
+  displayName: string;
   defaultToggled: boolean;
 
   constructor(colName: string, displayName: string, defaultToggled?: boolean) {
     this.colName = colName;
-    this.displayname = displayName;
+    this.displayName = displayName;
     if (defaultToggled) {
       this.defaultToggled = true;
     } else {

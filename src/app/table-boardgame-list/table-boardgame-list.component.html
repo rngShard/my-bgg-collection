@@ -2,6 +2,14 @@
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
 </mat-form-field> -->
+<mat-form-field appearance="fill">
+  <mat-label> Columns to display </mat-label>
+  <mat-select [(value)]="columnsToDisplay" multiple>
+    <mat-option value="thumbnail" disabled> Thumbnail </mat-option>
+    <mat-option value="name" disabled> Name </mat-option>
+    <mat-option *ngFor="let colItem of availableColumns" [value]="colItem.colName"> {{ colItem.displayName }} </mat-option>
+  </mat-select>
+</mat-form-field>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>

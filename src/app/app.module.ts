@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatFormFieldModule,
     MatSortModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -29,9 +29,9 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   availableColumns: ColumnDisplayToggleItem[] = [
     new ColumnDisplayToggleItem('yearPublished', 'Publishing year'),
     new ColumnDisplayToggleItem('numPlayersRecommended', 'Recommended number of players', true),
-    new ColumnDisplayToggleItem('playingTime', 'Recommended number of players', true),
+    new ColumnDisplayToggleItem('playingTime', 'Expected playing time', true),
     new ColumnDisplayToggleItem('playerAge', 'Recommended player age'),
-    new ColumnDisplayToggleItem('ratingAverage', 'Average rating on BGG', true),
+    new ColumnDisplayToggleItem('ratingAverage', 'Average rating on BGG'),
     new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG', true),
     new ColumnDisplayToggleItem('rank', 'Rank on BGG', true),
     new ColumnDisplayToggleItem('numPlays', 'My logged plays number on BGG')
