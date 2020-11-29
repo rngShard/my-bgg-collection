@@ -32,11 +32,23 @@
       <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
       <td class="attrs" mat-cell *matCellDef="let row"> {{row.playingTime}} min </td>
     </ng-container>
-    <ng-container matColumnDef="playerAge">   <!-- TODO: allow toggling -->
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Player age [Years] </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.playerAge}} </td>
+    <ng-container matColumnDef="playerAge">
+      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
+      <td class="attrs" mat-cell *matCellDef="let row"> {{row.playerAge}}+ </td>
     </ng-container>
-    <ng-container matColumnDef="numPlays">   <!-- TODO: allow toggling -->
+    <ng-container matColumnDef="ratingAverage">
+      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
+      <td class="attrs" mat-cell *matCellDef="let row"> {{row.ratingAverage}} </td>
+    </ng-container>
+    <ng-container matColumnDef="weightAverage">
+      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+      <td class="attrs" mat-cell *matCellDef="let row"> {{row.weightAverage}} </td>      
+    </ng-container>
+    <ng-container matColumnDef="rank">
+      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Rank </th>
+      <td class="attrs" mat-cell *matCellDef="let row"> {{row.rank}} </td>
+    </ng-container>
+    <ng-container matColumnDef="numPlays">
       <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Played </th>
       <td class="attrs" mat-cell *matCellDef="let row"> {{row.numPlays}} </td>
     </ng-container>
@@ -51,13 +63,13 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
               <ul>
+                <li>
+                  <a href="https://boardgamegeek.com/boardgame/{{row.objectid}}" target="_blank"> &#64; BoardGameGeek </a>
+                </li>
                 <li> Num. of players: {{row.numPlayersMin}} - {{row.numPlayersMax}} </li>
                 <li *ngIf="row.playingTimeMin != row.playingTimeMax"> Playing time: {{row.playingTimeMin}} - {{row.playingTimeMax}} min </li>
                 <li *ngIf="row.playingTimeMin == row.playingTimeMax"> Playing time: {{row.playingTimeMin}} min </li>
                 <li *ngIf="row.playerAge != ''"> Player age: {{row.playerAge}} </li>
-                <li>
-                  <a href="https://boardgamegeek.com/boardgame/{{row.objectid}}" target="_blank"> &#64; BoardGameGeek </a>
-                </li>
               </ul>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -65,7 +77,7 @@
                 <li> Rating: {{row.ratingAverage}} / 10 </li>
                 <li> Weight: {{row.weightAverage}} / 5 </li>
                 <li> Rank: {{row.rank}} </li>
-                <li> Logged plays: {{row.numPlays}} </li>
+                <li> My logged plays: {{row.numPlays}} </li>
                 <!-- <li> My Rating: TODO </li> -->
               </ul>
             </mat-grid-tile>

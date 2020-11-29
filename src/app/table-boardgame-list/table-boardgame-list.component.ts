@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BggBoardgame, BggBoardgameThing } from '../bgg-objects';
 import { BggApiService } from '../bgg-api.service';
+import { ColumnDisplayToggleItem } from './columnDisplayToggleItem';
 
 @Component({
   selector: 'app-table-boardgame-list',
@@ -25,7 +26,17 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   preordered: BggBoardgame[] = [];
 
   dataSource: MatTableDataSource<BggBoardgameThing>;
-  columnsToDisplay = ['thumbnail', 'name', 'numPlayersRecommended', 'playingTime', 'numPlays'];
+  availableColumns: ColumnDisplayToggleItem[] = [
+    new ColumnDisplayToggleItem('yearPublished', 'Publishing year'),
+    new ColumnDisplayToggleItem('numPlayersRecommended', 'Recommended number of players', true),
+    new ColumnDisplayToggleItem('playingTime', 'Recommended number of players', true),
+    new ColumnDisplayToggleItem('playerAge', 'Recommended player age'),
+    new ColumnDisplayToggleItem('ratingAverage', 'Average rating on BGG', true),
+    new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG', true),
+    new ColumnDisplayToggleItem('rank', 'Rank on BGG', true),
+    new ColumnDisplayToggleItem('numPlays', 'My logged plays number on BGG')
+  ]
+  columnsToDisplay = ['thumbnail', 'name'];
   expandedRow: BggBoardgameThing | null;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,6 +44,11 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
  
   constructor(private _bggApiService: BggApiService) {
     this.dataSource = new MatTableDataSource(this.own);
+    for (let availCol of this.availableColumns) {
+      if (availCol.defaultToggled) {
+        this.columnsToDisplay.push(availCol.colName);
+      }
+    }
   }
   
   ngOnInit() {
