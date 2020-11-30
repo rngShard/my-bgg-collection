@@ -67,15 +67,6 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
-
   sortBoardgamesByCollection() {
     for (let game of this.boardgames) {
       if (game.status.fortrade) {
@@ -97,4 +88,45 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
     }
     console.log(`Sorted ${this.boardgames.length} games by collection:\nForTrade (${this.fortrade.length}), Own (follow-up API calls), Preordered (${this.preordered.length})`)
   }
+  
+  applyFilter(colName: string, event: Event) {
+    switch(colName) {
+      case 'name': {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filterPredicate = function(data: BggBoardgameThing, filter: string): boolean {
+          return data.name.toLowerCase().includes(filter);
+        };
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+        break;  
+      }
+      case 'playerNum': {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filterPredicate = function(data: BggBoardgameThing, filter: string): boolean {
+          return data.numPlayersRecommended.includes(+filter);
+        };
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+        break;
+      }
+      case 'weight': {
+        const midValue = event['value'];
+        const buffer = 0.1;   
+        this.dataSource.filterPredicate = function(data: BggBoardgameThing, filter: string): boolean {
+          let lower = +filter - 0.5 - buffer;
+          let upper = +filter + 0.5 + buffer;
+          return lower <= data.weightAverage && data.weightAverage <= upper;
+        };
+        this.dataSource.filter = midValue;
+        break;
+      }
+      default: {
+        console.log("ERROR: Invalid colName to be filter for:", colName);
+        break;
+      }
+    }
+    
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 }

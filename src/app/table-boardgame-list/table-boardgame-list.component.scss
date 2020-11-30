@@ -94,3 +94,14 @@ mat-grid-tile {
     }
   }
 }
+
+div.flex-container {
+  display: flex;
+  justify-content: center;
+
+  mat-form-field {
+    max-width: 10em;
+    margin: 0 .5em;
+    flex: 1;
+  }
+}

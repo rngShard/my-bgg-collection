@@ -1,15 +1,33 @@
-<!-- <mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-</mat-form-field> -->
-<mat-form-field appearance="fill">
-  <mat-label> Columns to display </mat-label>
-  <mat-select [(value)]="columnsToDisplay" multiple>
-    <mat-option value="thumbnail" disabled> Thumbnail </mat-option>
-    <mat-option value="name" disabled> Name </mat-option>
-    <mat-option *ngFor="let colItem of availableColumns" [value]="colItem.colName"> {{ colItem.displayName }} </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="flex-container">
+  <mat-form-field>
+    <mat-label> Filter by name </mat-label>
+    <input matInput (keyup)="applyFilter('name', $event)">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label> Filter by num. players </mat-label>
+    <input matInput type="number" (keyup)="applyFilter('playerNum', $event)">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Filter by weight</mat-label>
+    <mat-select matNativeControl (selectionChange)="applyFilter('weight', $event)">
+      <mat-option value="1.5"> Light </mat-option>
+      <mat-option value="2.5"> Medium </mat-option>
+      <mat-option value="3.5"> Heavy </mat-option>
+      <mat-option value="4.5"> Extreme </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label> Columns to display </mat-label>
+    <mat-select [(value)]="columnsToDisplay" multiple>
+      <mat-option value="thumbnail" disabled> Thumbnail </mat-option>
+      <mat-option value="name" disabled> Name </mat-option>
+      <mat-option *ngFor="let colItem of availableColumns" [value]="colItem.colName"> {{ colItem.displayName }} </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>

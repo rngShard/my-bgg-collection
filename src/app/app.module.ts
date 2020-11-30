@@ -14,6 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSortModule,
     MatGridListModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
