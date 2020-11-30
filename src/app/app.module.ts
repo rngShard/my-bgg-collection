@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { TableBoardgameListComponent } from './table-boardgame-list/table-boardgame-list.component';
+import { Http202Dialog, TableBoardgameListComponent } from './table-boardgame-list/table-boardgame-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -16,12 +16,14 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableBoardgameListComponent
+    TableBoardgameListComponent,
+    Http202Dialog
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatChipsModule,
     MatSelectModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

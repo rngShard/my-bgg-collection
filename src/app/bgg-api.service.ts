@@ -20,7 +20,8 @@ export class BggApiService {
     if (excludeWishlist) { url += "&wishlist=0"}
     
     return this._http.get(url, {
-      responseType: 'text'
+      responseType: 'text',
+      observe: 'response'
     });
   }
 

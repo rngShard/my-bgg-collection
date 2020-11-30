@@ -7,6 +7,7 @@ import { BggBoardgame, BggBoardgameThing } from '../bgg-objects';
 import { BggApiService } from '../bgg-api.service';
 import { ColumnDisplayToggleItem } from './columnDisplayToggleItem';
 import { AbstractControl, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-table-boardgame-list',
@@ -46,7 +47,8 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
  
   constructor(
     private _bggApiService: BggApiService,
-    formBuilder: FormBuilder
+    formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.dataSource = new MatTableDataSource(this.own);
 
@@ -75,13 +77,20 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit() {
-    this._bggApiService.getBGGCollection().subscribe(stringXmlData => {
-      this._bggApiService.parseBGGCollectionXML(stringXmlData).then((xmlData: BggBoardgame[]) => {
-        this.boardgames = xmlData;
-        console.log(`App retrieved ${this.boardgames.length} boardgames.`)
-
-        this.sortBoardgamesByCollection();
-      })
+    this._bggApiService.getBGGCollection().subscribe(response => {
+      if (response.status === 202) {
+        this.open202Dialog();
+      } else if (response.status === 200) {
+        const stringXmlData = response.body;
+        this._bggApiService.parseBGGCollectionXML(stringXmlData).then((xmlData: BggBoardgame[]) => {
+          this.boardgames = xmlData;
+          console.log(`App retrieved ${this.boardgames.length} boardgames.`)
+  
+          this.sortBoardgamesByCollection();
+        })
+      } else {
+        console.error("ERROR: _bggApiService.getBGGCollection() returned HTTP != 200/202", response);
+      }
     });
   }
 
@@ -111,45 +120,19 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
     }
     console.log(`Sorted ${this.boardgames.length} games by collection:\nForTrade (${this.fortrade.length}), Own (follow-up API calls), Preordered (${this.preordered.length})`)
   }
-  
-  // applyFilter(colName: string, event: Event) {
-  //   switch(colName) {
-  //     case 'name': {
-  //       const filterValue = (event.target as HTMLInputElement).value;
-  //       this.dataSource.filterPredicate = function(data: BggBoardgameThing, filter: string): boolean {
-  //         return data.name.toLowerCase().includes(filter);
-  //       };
-  //       this.dataSource.filter = filterValue.trim().toLowerCase();
-  //       break;  
-  //     }
-  //     case 'playerNum': {
-  //       const filterValue = (event.target as HTMLInputElement).value;
-  //       this.dataSource.filterPredicate = function(data: BggBoardgameThing, filter: string): boolean {
-  //         return data.numPlayersRecommended.includes(+filter);
-  //       };
-  //       this.dataSource.filter = filterValue.trim().toLowerCase();
-  //       break;
-  //     }
-  //     case 'weight': {
-  //       const midValue = event['value'];
-  //       const buffer = 0.1;   
-  //       this.dataSource.filterPredicate = function(data: BggBoardgameThing, filter: string): boolean {
-  //         let lower = +filter - 0.5 - buffer;
-  //         let upper = +filter + 0.5 + buffer;
-  //         return lower <= data.weightAverage && data.weightAverage <= upper;
-  //       };
-  //       this.dataSource.filter = midValue;
-  //       break;
-  //     }
-  //     default: {
-  //       console.log("ERROR: Invalid colName to be filter for:", colName);
-  //       break;
-  //     }
-  //   }
-    
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
+
+  open202Dialog() {
+    const dialogRef = this.dialog.open(Http202Dialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      window.location.reload();
+    });
+  }
 
 }
+
+@Component({
+  selector: 'http-202-dialog',
+  templateUrl: 'http-202-dialog.html',
+})
+export class Http202Dialog {}
