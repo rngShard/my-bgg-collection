@@ -15,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MatInputModule } from '@angular/material/input';
     MatGridListModule,
     MatChipsModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
