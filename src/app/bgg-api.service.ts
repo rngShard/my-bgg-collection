@@ -20,7 +20,8 @@ export class BggApiService {
     if (excludeWishlist) { url += "&wishlist=0"}
     
     return this._http.get(url, {
-      responseType: 'text'
+      responseType: 'text',
+      observe: 'response'
     });
   }
 
@@ -46,6 +47,7 @@ export class BggApiService {
   getBGGBoardgame(objectid: Number): Promise<BggBoardgameThing> {
     return new Promise(resolve => {
       let url = `${this.BGG_API_ENDPOINT}/thing?id=${objectid}`;
+      url += "&stats=1";
 
       this._http.get(url, {
         responseType: 'text'

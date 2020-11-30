@@ -70,6 +70,9 @@ export class BggBoardgameThing implements BggObject {
   artists: String[];
   publishers: String[];
   numPlays?: Number;
+  ratingAverage: Number;
+  weightAverage: Number;
+  rank: Number;
 
   constructor(BggXmlApiItemObj) {    
     this.objectid = +BggXmlApiItemObj['$']['id'];
@@ -155,6 +158,9 @@ export class BggBoardgameThing implements BggObject {
     this.artists = artists;
     this.publishers = publishers;
 
+    this.ratingAverage = Math.round(+BggXmlApiItemObj['statistics'][0]['ratings'][0]['average'][0]['$']['value'] * 10) / 10;
+    this.weightAverage = Math.round(+BggXmlApiItemObj['statistics'][0]['ratings'][0]['averageweight'][0]['$']['value'] * 10) / 10;
+    this.rank = +BggXmlApiItemObj['statistics'][0]['ratings'][0]['ranks'][0]['rank'][0]['$']['value'];
   }
 }
 
