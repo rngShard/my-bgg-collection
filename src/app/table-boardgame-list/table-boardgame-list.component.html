@@ -1,4 +1,4 @@
-<form class="flex-container" [formGroup]="formControl">
+<form class="filter-flex-container" [formGroup]="formControl">
   <mat-form-field>
     <mat-label> Filter by name </mat-label>
     <input matInput formControlName="name">
@@ -18,22 +18,24 @@
       <mat-option value="4.5"> Extreme </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label> Columns to display </mat-label>
-    <mat-select [(value)]="columnsToDisplay" multiple>
-      <mat-option value="thumbnail" disabled> Thumbnail </mat-option>
-      <mat-option value="name" disabled> Name </mat-option>
-      <mat-option *ngFor="let colItem of availableColumns" [value]="colItem.colName"> {{ colItem.displayName }} </mat-option>
-    </mat-select>
-  </mat-form-field>
 </form>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
     
     <ng-container matColumnDef="thumbnail">
-      <th mat-header-cell *matHeaderCellDef></th>
+      <th mat-header-cell *matHeaderCellDef>
+        
+        <mat-form-field class="thumbnail">
+          <mat-label> Columns to display </mat-label>
+          <mat-select [(value)]="columnsToDisplay" multiple>
+            <mat-option value="thumbnail" disabled> Thumbnail </mat-option>
+            <mat-option value="name" disabled> Name </mat-option>
+            <mat-option *ngFor="let colItem of availableColumns" [value]="colItem.colName"> {{ colItem.displayName }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </th>
       <td class="thumbnail" mat-cell *matCellDef="let row">
         <img [src]="row.thumbnail" />
       </td>

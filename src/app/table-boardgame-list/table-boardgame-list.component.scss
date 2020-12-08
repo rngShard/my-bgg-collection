@@ -48,7 +48,10 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
-td.thumbnail {
+mat-form-field.thumbnail {
+  top: .75em;
+}
+.thumbnail {
   width: 10em;
   text-align: center;
   padding-right: 0;
@@ -95,12 +98,12 @@ mat-grid-tile {
   }
 }
 
-.flex-container {
+.filter-flex-container {
   display: flex;
   justify-content: center;
 
   mat-form-field {
-    max-width: 10em;
+    width: 7em;
     margin: 0 .5em;
     flex: 1;
   }
