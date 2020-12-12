@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TableExpandedDetailsComponent } from './table-boardgame-list/table-expanded-details/table-expanded-details.component';
 
 
 
@@ -31,7 +32,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     TableBoardgameListComponent,
     Http202Dialog,
     HeaderToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    TableExpandedDetailsComponent
   ],
   imports: [
     BrowserModule,

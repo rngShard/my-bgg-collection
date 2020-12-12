@@ -94,41 +94,7 @@
           <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplay.length">
             <div class="example-element-detail" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
               
-              <mat-grid-list cols="3" rowHeight="10em" style="width: 50vw; height: 50vh;">
-                <mat-grid-tile class="image" [colspan]="1" [rowspan]="2">
-                  <img [src]="row.image">
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                  <ul>
-                    <li>
-                      <a href="https://boardgamegeek.com/boardgame/{{row.objectid}}" target="_blank"> &#64; BoardGameGeek </a>
-                    </li>
-                    <li> Num. of players: {{row.numPlayersMin}} - {{row.numPlayersMax}} </li>
-                    <li *ngIf="row.playingTimeMin != row.playingTimeMax"> Playing time: {{row.playingTimeMin}} - {{row.playingTimeMax}} min </li>
-                    <li *ngIf="row.playingTimeMin == row.playingTimeMax"> Playing time: {{row.playingTimeMin}} min </li>
-                    <li *ngIf="row.playerAge != ''"> Player age: {{row.playerAge}} </li>
-                  </ul>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                  <ul>
-                    <li> Rating: {{row.ratingAverage}} / 10 </li>
-                    <li> Weight: {{row.weightAverage}} / 5 </li>
-                    <li> Rank: {{row.rank}} </li>
-                    <li> My logged plays: {{row.numPlays}} </li>
-                    <!-- <li> My Rating: TODO </li> -->
-                  </ul>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="2" [rowspan]="1">
-                  <p [innerHTML]="row.description"></p>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="3" [rowspan]="1">
-                  <!-- <mat-chip-list class="mat-chip-list-stacked"> -->
-                  <mat-chip-list>
-                    <mat-chip *ngFor="let category of row.categories" color="primary" selected> {{category}} </mat-chip>
-                    <mat-chip *ngFor="let mechanic of row.mechanics" color="secondary" selected> {{mechanic}} </mat-chip>
-                  </mat-chip-list>
-                </mat-grid-tile>
-              </mat-grid-list>
+              <app-table-expanded-details [game]="row"></app-table-expanded-details>
 
             </div>
           </td>

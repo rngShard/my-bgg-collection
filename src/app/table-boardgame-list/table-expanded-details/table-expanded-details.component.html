@@ -1,0 +1,35 @@
+<mat-grid-list cols="3" rowHeight="10em" style="width: 50vw; height: 50vh;">
+  <mat-grid-tile class="image" [colspan]="1" [rowspan]="2">
+    <img [src]="game.image">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <ul>
+      <li>
+        <a [href]="gameUrl" target="_blank"> &#64; BoardGameGeek </a>
+      </li>
+      <li> Num. of players: {{game.numPlayersMin}} - {{game.numPlayersMax}} </li>
+      <li *ngIf="game.playingTimeMin != game.playingTimeMax"> Playing time: {{game.playingTimeMin}} - {{game.playingTimeMax}} min </li>
+      <li *ngIf="game.playingTimeMin == game.playingTimeMax"> Playing time: {{game.playingTimeMin}} min </li>
+      <li> Player age: {{game.playerAge}} </li>
+    </ul>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <ul>
+      <li> Rating: {{game.ratingAverage}} / 10 </li>
+      <li> Weight: {{game.weightAverage}} / 5 </li>
+      <li> Rank: {{game.rank}} </li>
+      <li> My logged plays: {{game.numPlays}} </li>
+      <!-- <li> My Rating: TODO </li> -->
+    </ul>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <p [innerHTML]="game.description"></p>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <!-- <mat-chip-list class="mat-chip-list-stacked"> -->
+    <mat-chip-list>
+      <mat-chip *ngFor="let category of game.categories" color="primary" selected> {{category}} </mat-chip>
+      <mat-chip *ngFor="let mechanic of game.mechanics" color="secondary" selected> {{mechanic}} </mat-chip>
+    </mat-chip-list>
+  </mat-grid-tile>
+</mat-grid-list>
