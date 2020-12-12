@@ -41,6 +41,7 @@ $ cp config.json.example config.json
 ```
 - Build the app
 ```bash
+$ (sudo) npm install -g @angular/cli
 $ ng build --prod --baseHref="..."
 ```
 
