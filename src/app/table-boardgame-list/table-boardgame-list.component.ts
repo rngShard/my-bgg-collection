@@ -30,11 +30,11 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<BggBoardgameThing>;
   availableColumns: ColumnDisplayToggleItem[] = [
     new ColumnDisplayToggleItem('yearPublished', 'Publishing year'),
-    new ColumnDisplayToggleItem('numPlayersRecommended', 'Recommended number of players', true),
+    new ColumnDisplayToggleItem('numPlayersRecommended', 'Recommended number of players'),
     new ColumnDisplayToggleItem('playingTime', 'Expected playing time', true),
     new ColumnDisplayToggleItem('playerAge', 'Recommended player age'),
     new ColumnDisplayToggleItem('ratingAverage', 'Average rating on BGG'),
-    new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG', true),
+    new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG'),
     new ColumnDisplayToggleItem('rank', 'Rank on BGG', true),
     new ColumnDisplayToggleItem('numPlays', 'My logged plays number on BGG')
   ]
