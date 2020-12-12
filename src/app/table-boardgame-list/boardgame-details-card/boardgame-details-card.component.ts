@@ -3,11 +3,11 @@ import { BggBoardgameThing } from 'src/app/bgg-objects';
 import { Url } from 'url';
 
 @Component({
-  selector: 'app-table-expanded-details',
-  templateUrl: './table-expanded-details.component.html',
-  styleUrls: ['./table-expanded-details.component.scss']
+  selector: 'app-boardgame-details-card',
+  templateUrl: './boardgame-details-card.component.html',
+  styleUrls: ['./boardgame-details-card.component.scss']
 })
-export class TableExpandedDetailsComponent implements OnInit {
+export class BoardgameDetailsCardComponent implements OnInit {
   @Input() game: BggBoardgameThing | null;
   gameUrl: String;
 

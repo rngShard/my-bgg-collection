@@ -92,21 +92,20 @@
 
         <ng-container matColumnDef="expandedDetail">
           <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplay.length">
-            <div class="example-element-detail" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
+            <div class="row-expanded-details" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
               
-              <app-table-expanded-details [game]="row"></app-table-expanded-details>
+              <app-boardgame-details-card [game]="row"></app-boardgame-details-card>
 
             </div>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
-            class="example-element-row"
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="entry-row"
             [class.example-expanded-row]="expandedRow === row"
             (click)="expandedRow = expandedRow === row ? null : row">
         </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
         
       </table>
       

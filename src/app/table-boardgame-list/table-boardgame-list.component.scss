@@ -2,50 +2,28 @@ table {
   width: 100%;
 }
 
-tr.example-detail-row {
+tr.detail-row {
   height: 0;
 }
 
-tr.example-element-row:not(.example-expanded-row):hover {
+tr.entry-row:not(.row-expanded-details):hover {
   background: whitesmoke;
   cursor: pointer;
 }
 
-tr.example-element-row:not(.example-expanded-row):active {
+tr.entry-row:not(.row-expanded-details):active {
   background: #efefef;
   cursor: pointer;
 }
 
-.example-element-row td {
+.entry-row td {
   border-bottom-width: 0;
 }
 
-.example-element-detail {
+.row-expanded-details {
   overflow: hidden;
   display: flex;
-}
-
-.example-element-diagram {
-  min-width: 80px;
-  border: 2px solid black;
-  padding: 8px;
-  font-weight: lighter;
-  margin: 8px 0;
-  height: 104px;
-}
-
-.example-element-symbol {
-  font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
-}
-
-.example-element-description {
-  padding: 16px;
-}
-
-.example-element-description-attribution {
-  opacity: 0.5;
+  justify-content: center;
 }
 
 mat-form-field.thumbnail {
