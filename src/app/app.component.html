@@ -1,9 +1,11 @@
-<app-header-toolbar role="banner"></app-header-toolbar>
+<!-- <app-header-toolbar role="banner"></app-header-toolbar> -->
 
-<div class="content" role="main">
-  <app-table-boardgame-list></app-table-boardgame-list>
+<div id="page-container">
+  <div id="content-wrap">
+    <app-table-boardgame-list></app-table-boardgame-list>
+  </div>
 </div>
 
-<app-footer [username]="username"></app-footer>
+<app-footer id="footer" [username]="username"></app-footer>
 
 <router-outlet></router-outlet>

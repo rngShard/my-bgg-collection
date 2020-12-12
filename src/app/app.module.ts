@@ -21,6 +21,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { FooterComponent } from './footer/footer.component';
     MatInputModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
