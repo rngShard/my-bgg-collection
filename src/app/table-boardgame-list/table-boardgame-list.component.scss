@@ -2,53 +2,34 @@ table {
   width: 100%;
 }
 
-tr.example-detail-row {
+tr.detail-row {
   height: 0;
 }
 
-tr.example-element-row:not(.example-expanded-row):hover {
+tr.entry-row:not(.row-expanded-details):hover {
   background: whitesmoke;
   cursor: pointer;
 }
 
-tr.example-element-row:not(.example-expanded-row):active {
+tr.entry-row:not(.row-expanded-details):active {
   background: #efefef;
   cursor: pointer;
 }
 
-.example-element-row td {
+.entry-row td {
   border-bottom-width: 0;
 }
 
-.example-element-detail {
+.row-expanded-details {
   overflow: hidden;
   display: flex;
+  justify-content: center;
 }
 
-.example-element-diagram {
-  min-width: 80px;
-  border: 2px solid black;
-  padding: 8px;
-  font-weight: lighter;
-  margin: 8px 0;
-  height: 104px;
+mat-form-field.thumbnail {
+  top: .75em;
 }
-
-.example-element-symbol {
-  font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
-}
-
-.example-element-description {
-  padding: 16px;
-}
-
-.example-element-description-attribution {
-  opacity: 0.5;
-}
-
-td.thumbnail {
+.thumbnail {
   width: 10em;
   text-align: center;
   padding-right: 0;
@@ -64,44 +45,17 @@ th.attrs, td.attrs {
   text-align: center;
 }
 
-mat-grid-tile {
-  overflow: auto;
-
-  img {
-    max-height: 15em;
-    max-width: 80%;
-  }
-
-  p {
-    max-height: 10em;
-    margin-top: 1.5em;
-  }
-
-  mat-chip-list {
-    max-height: 10em;
-    margin: 0 1em;
-
-    mat-chip {
-      max-width: 8em;
-      // height: auto;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    mat-chip:hover {
-      overflow: visible;
-      z-index: 100;
-    }
-  }
-}
-
-.flex-container {
+.filter-flex-container {
   display: flex;
   justify-content: center;
 
   mat-form-field {
-    max-width: 10em;
+    width: 7em;
     margin: 0 .5em;
     flex: 1;
   }
+}
+
+form {
+  margin: 1em 2em 0 2em;
 }

@@ -1,137 +1,122 @@
-<form class="flex-container" [formGroup]="formControl">
-  <mat-form-field>
-    <mat-label> Filter by name </mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label> Filter by num. players </mat-label>
-    <input matInput formControlName="numPlayers" type="number">
-  </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label>Filter by weight</mat-label>
-    <mat-select matNativeControl formControlName="weight">
-      <mat-option value="1.5"> Light </mat-option>
-      <mat-option value="2.5"> Medium </mat-option>
-      <mat-option value="3.5"> Heavy </mat-option>
-      <mat-option value="4.5"> Extreme </mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-tab-group mat-align-tabs="center" selectedIndex="1">
+<mat-tab label="Archive" disabled>
 
-  <mat-form-field appearance="fill">
-    <mat-label> Columns to display </mat-label>
-    <mat-select [(value)]="columnsToDisplay" multiple>
-      <mat-option value="thumbnail" disabled> Thumbnail </mat-option>
-      <mat-option value="name" disabled> Name </mat-option>
-      <mat-option *ngFor="let colItem of availableColumns" [value]="colItem.colName"> {{ colItem.displayName }} </mat-option>
-    </mat-select>
-  </mat-form-field>
-</form>
+  TODO
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+</mat-tab>
+<mat-tab label="Collection">
+  <ng-template matTabContent>
     
-    <ng-container matColumnDef="thumbnail">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td class="thumbnail" mat-cell *matCellDef="let row">
-        <img [src]="row.thumbnail" />
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name (Year) </th>
-      <td mat-cell *matCellDef="let row">
-        {{row.name}}
-        <br>
-        ({{row.yearPublished}})
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="yearPublished">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Published [Year] </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.yearPublished}} </td>
-    </ng-container>
-    <ng-container matColumnDef="numPlayersRecommended">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Num. Players </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.numPlayersRecommended | json}} </td>
-    </ng-container>
-    <ng-container matColumnDef="playingTime">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.playingTime}} min </td>
-    </ng-container>
-    <ng-container matColumnDef="playerAge">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.playerAge}}+ </td>
-    </ng-container>
-    <ng-container matColumnDef="ratingAverage">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.ratingAverage}} </td>
-    </ng-container>
-    <ng-container matColumnDef="weightAverage">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.weightAverage}} </td>      
-    </ng-container>
-    <ng-container matColumnDef="rank">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Rank </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.rank}} </td>
-    </ng-container>
-    <ng-container matColumnDef="numPlays">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Played </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.numPlays}} </td>
-    </ng-container>
+    <form class="filter-flex-container" [formGroup]="formControl">
+      <mat-form-field appearance="fill">
+        <mat-label> Filter by name </mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label> Filter by num. players </mat-label>
+        <input matInput formControlName="numPlayers" type="number">
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Filter by weight</mat-label>
+        <mat-select matNativeControl formControlName="weight">
+          <mat-option value="1.5"> Light </mat-option>
+          <mat-option value="2.5"> Medium </mat-option>
+          <mat-option value="3.5"> Heavy </mat-option>
+          <mat-option value="4.5"> Extreme </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
 
-    <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplay.length">
-        <div class="example-element-detail" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
-          
-          <mat-grid-list cols="3" rowHeight="10em" style="width: 50vw; height: 50vh;">
-            <mat-grid-tile class="image" [colspan]="1" [rowspan]="2">
-              <img [src]="row.image">
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-              <ul>
-                <li>
-                  <a href="https://boardgamegeek.com/boardgame/{{row.objectid}}" target="_blank"> &#64; BoardGameGeek </a>
-                </li>
-                <li> Num. of players: {{row.numPlayersMin}} - {{row.numPlayersMax}} </li>
-                <li *ngIf="row.playingTimeMin != row.playingTimeMax"> Playing time: {{row.playingTimeMin}} - {{row.playingTimeMax}} min </li>
-                <li *ngIf="row.playingTimeMin == row.playingTimeMax"> Playing time: {{row.playingTimeMin}} min </li>
-                <li *ngIf="row.playerAge != ''"> Player age: {{row.playerAge}} </li>
-              </ul>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-              <ul>
-                <li> Rating: {{row.ratingAverage}} / 10 </li>
-                <li> Weight: {{row.weightAverage}} / 5 </li>
-                <li> Rank: {{row.rank}} </li>
-                <li> My logged plays: {{row.numPlays}} </li>
-                <!-- <li> My Rating: TODO </li> -->
-              </ul>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-              <p [innerHTML]="row.description"></p>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="3" [rowspan]="1">
-              <!-- <mat-chip-list class="mat-chip-list-stacked"> -->
-              <mat-chip-list>
-                <mat-chip *ngFor="let category of row.categories" color="primary" selected> {{category}} </mat-chip>
-                <mat-chip *ngFor="let mechanic of row.mechanics" color="secondary" selected> {{mechanic}} </mat-chip>
-              </mat-chip-list>
-            </mat-grid-tile>
-          </mat-grid-list>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+        
+        <ng-container matColumnDef="thumbnail">
+          <th mat-header-cell *matHeaderCellDef>
+            
+            <mat-form-field class="thumbnail">
+              <mat-label> Columns to display </mat-label>
+              <mat-select [(value)]="columnsToDisplay" multiple>
+                <mat-option value="thumbnail" disabled> Thumbnail </mat-option>
+                <mat-option value="name" disabled> Name </mat-option>
+                <mat-option *ngFor="let colItem of availableColumns" [value]="colItem.colName"> {{ colItem.displayName }} </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-        </div>
-      </td>
-    </ng-container>
+          </th>
+          <td class="thumbnail" mat-cell *matCellDef="let row">
+            <img [src]="row.thumbnail" />
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name (Year) </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.name}}
+            <br>
+            ({{row.yearPublished}})
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="yearPublished">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Published [Year] </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.yearPublished}} </td>
+        </ng-container>
+        <ng-container matColumnDef="numPlayersRecommended">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Num. Players </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.numPlayersRecommended | json}} </td>
+        </ng-container>
+        <ng-container matColumnDef="playingTime">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.playingTime}} min </td>
+        </ng-container>
+        <ng-container matColumnDef="playerAge">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.playerAge}}+ </td>
+        </ng-container>
+        <ng-container matColumnDef="ratingAverage">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.ratingAverage}} </td>
+        </ng-container>
+        <ng-container matColumnDef="weightAverage">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.weightAverage}} </td>      
+        </ng-container>
+        <ng-container matColumnDef="rank">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Rank </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.rank}} </td>
+        </ng-container>
+        <ng-container matColumnDef="numPlays">
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Played </th>
+          <td class="attrs" mat-cell *matCellDef="let row"> {{row.numPlays}} </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
-        class="example-element-row"
-        [class.example-expanded-row]="expandedRow === row"
-        (click)="expandedRow = expandedRow === row ? null : row">
-    </tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-    
-  </table>
-  
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="10"></mat-paginator>
-</div>
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplay.length">
+            <div class="row-expanded-details" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
+              
+              <app-boardgame-details-card [game]="row"></app-boardgame-details-card>
+
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="entry-row"
+            [class.example-expanded-row]="expandedRow === row"
+            (click)="expandedRow = expandedRow === row ? null : row">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        
+      </table>
+      
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="10"></mat-paginator>
+    </div>
+
+  </ng-template>
+</mat-tab>
+<mat-tab label="Preordered" disabled>
+
+  TODO
+
+</mat-tab>
+</mat-tab-group>

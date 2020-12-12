@@ -10,11 +10,9 @@ import Config from '../../config.json';
 })
 export class AppComponent {
   username: String;
-  bggUserURL: String;
   boardgames: BggBoardgame[];
   
   constructor(private _bggApiService: BggApiService) {
     this.username = Config.bgg.username;
-    this.bggUserURL = `https://boardgamegeek.com/user/${Config.bgg.username}`;
   }
 }

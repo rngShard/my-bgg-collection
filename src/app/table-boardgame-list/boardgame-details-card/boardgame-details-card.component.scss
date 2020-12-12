@@ -1,0 +1,28 @@
+mat-card {
+  max-width: 80%;
+  margin: 1em auto;
+
+  img {
+    object-fit: cover;
+    max-height: 30em;
+    
+    display: block;
+    max-width: 30em;
+
+    @media (min-width: 34.5em) {
+      margin: 0 auto 1em auto;
+     }
+  }
+  
+  mat-card-content {
+    max-height: 20em;
+    overflow: auto;
+  }
+}
+
+.card-avatar {
+  line-height: 40px;    // fixed as of mat-card anyways
+  text-align: center;
+  background-color: lightblue;
+  background-size: cover;
+}
