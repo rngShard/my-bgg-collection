@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BggBoardgameThing } from 'src/app/bgg-objects';
+import { BggBoardgame } from 'src/app/bgg-objects';
 
 @Component({
   selector: 'app-preordered-table',
@@ -7,11 +7,12 @@ import { BggBoardgameThing } from 'src/app/bgg-objects';
   styleUrls: ['./preordered-table.component.scss']
 })
 export class PreorderedTableComponent implements OnInit {
-  @Input() games: BggBoardgameThing[];
+  @Input() games: BggBoardgame[];
 
   constructor() { }
 
   ngOnInit(): void {
+    // this.games.sort((a,b) => +b.yearPublished - +a.yearPublished);   // FIX: Implement sorting properly
   }
 
 }

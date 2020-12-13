@@ -23,7 +23,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ArchiveTableComponent } from './table-boardgame-list/archive-table/archive-table.component';
 import { PreorderedTableComponent } from './table-boardgame-list/preordered-table/preordered-table.component';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { BoardgameSimpleCardComponent } from './table-boardgame-list/boardgame-simple-card/boardgame-simple-card.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PreorderedTableComponent } from './table-boardgame-list/preordered-tabl
     FooterComponent,
     BoardgameDetailsCardComponent,
     ArchiveTableComponent,
-    PreorderedTableComponent
+    PreorderedTableComponent,
+    BoardgameSimpleCardComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { PreorderedTableComponent } from './table-boardgame-list/preordered-tabl
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

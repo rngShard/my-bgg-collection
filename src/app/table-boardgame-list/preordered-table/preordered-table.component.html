@@ -1,5 +1,4 @@
-<ul>
-  <li *ngFor="let game of games">
-    {{game.name}}
-  </li>
-</ul>
+<ng-container *ngFor="let game of games">
+  <!-- <mat-divider></mat-divider> -->
+  <app-boardgame-simple-card [game]="game"></app-boardgame-simple-card>
+</ng-container>
