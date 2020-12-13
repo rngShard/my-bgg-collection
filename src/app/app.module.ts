@@ -21,6 +21,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BoardgameDetailsCardComponent } from './table-boardgame-list/boardgame-details-card/boardgame-details-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { ArchiveTableComponent } from './table-boardgame-list/archive-table/archive-table.component';
+import { PreorderedTableComponent } from './table-boardgame-list/preordered-table/preordered-table.component';
 
 
 
@@ -31,7 +33,9 @@ import { MatButtonModule } from '@angular/material/button';
     Http202Dialog,
     HeaderToolbarComponent,
     FooterComponent,
-    BoardgameDetailsCardComponent
+    BoardgameDetailsCardComponent,
+    ArchiveTableComponent,
+    PreorderedTableComponent
   ],
   imports: [
     BrowserModule,
