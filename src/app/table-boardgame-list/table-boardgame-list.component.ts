@@ -100,9 +100,11 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   }
 
   sortBoardgamesByCollection() {
+    let c = 0;
+    let ft = [], po = [];
     for (let game of this.boardgames) {
       if (game.status.fortrade) {
-        this.fortrade.push(game);
+        ft.push(game);
       }
       if (game.status.own) {
         this._bggApiService.getBGGBoardgame(game.objectid).then((gameThing: BggBoardgameThing) => {
@@ -112,13 +114,18 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
         });
       }
       if (game.status.preordered) {
-        this.preordered.push(game);
+        po.push(game);
       }
       if (!game.status.fortrade && !game.status.own && !game.status.preordered) {
         console.log(`Found game without Collection-Array:`, game);
       }
+      c++;
+      if (c === this.boardgames.length) {
+        this.fortrade = ft;
+        this.preordered = po;
+        console.log(`Sorted ${this.boardgames.length} games by collection:\nForTrade (${this.fortrade.length}), Own (API calls pending), Preordered (${this.preordered.length})`)
+      }
     }
-    console.log(`Sorted ${this.boardgames.length} games by collection:\nForTrade (${this.fortrade.length}), Own (follow-up API calls), Preordered (${this.preordered.length})`)
   }
 
   open202Dialog() {

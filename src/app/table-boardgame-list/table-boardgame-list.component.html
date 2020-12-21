@@ -1,7 +1,7 @@
 <mat-tab-group mat-align-tabs="center" selectedIndex="1">
-<mat-tab label="Archive" disabled>
+<mat-tab label="Archive">
 
-  TODO
+  <app-archive-table [games]="fortrade"></app-archive-table>
 
 </mat-tab>
 <mat-tab label="Collection">
@@ -58,7 +58,7 @@
           </td>
         </ng-container>
         <ng-container matColumnDef="yearPublished">
-          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Published [Year] </th>
+          <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Published </th>
           <td class="attrs" mat-cell *matCellDef="let row"> {{row.yearPublished}} </td>
         </ng-container>
         <ng-container matColumnDef="numPlayersRecommended">
@@ -114,9 +114,9 @@
 
   </ng-template>
 </mat-tab>
-<mat-tab label="Preordered" disabled>
+<mat-tab label="Preordered">
 
-  TODO
+  <app-preordered-table [games]="preordered"></app-preordered-table>
 
 </mat-tab>
 </mat-tab-group>

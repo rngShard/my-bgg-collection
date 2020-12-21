@@ -5,7 +5,8 @@
       <a [href]="gameUrl" target="_blank"> {{game.name}} </a> 
     </mat-card-title>
     <mat-card-subtitle>
-      {{game.numPlayersMin}} - {{game.numPlayersMax}} players,
+      <ng-container *ngIf="game.numPlayersMin != game.numPlayersMax"> {{game.numPlayersMin}} - {{game.numPlayersMax}} players, </ng-container>
+      <ng-container *ngIf="game.numPlayersMin == game.numPlayersMax"> {{game.numPlayersMin}} players, </ng-container>
       <ng-container *ngIf="game.playingTimeMin != game.playingTimeMax"> {{game.playingTimeMin}} - {{game.playingTimeMax}} min, </ng-container>
       <ng-container *ngIf="game.playingTimeMin == game.playingTimeMax"> {{game.playingTimeMin}} min, </ng-container>
       {{game.playerAge}}+ years
