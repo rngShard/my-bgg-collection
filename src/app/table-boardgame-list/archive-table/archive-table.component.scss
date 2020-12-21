@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+.thumbnail {
+  width: 10em;
+  text-align: center;
+  padding-right: 0;
+
+  img {
+    max-height: 4em;
+    max-width: 9em;
+    margin: .5em;
+  }
+}
