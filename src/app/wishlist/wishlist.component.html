@@ -1,10 +1,6 @@
 <div class="container">
-  <!-- <u> Previously owned games: </u>
-  <ul>
-    <li *ngFor="let game of boardgames">
-      <a href="https://boardgamegeek.com/boardgame/{{game.objectid}}" target="_blank"> {{game.name}} </a>
-    </li>
-  </ul> -->
+  <u> Games on my Wishlist (sorted by priority): </u>
+  <div class="spacer"></div>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let wishlist of wishlists">
       <mat-expansion-panel-header>

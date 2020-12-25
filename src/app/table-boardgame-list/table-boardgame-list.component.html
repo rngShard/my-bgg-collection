@@ -1,5 +1,5 @@
 <mat-drawer-container>
-  <mat-drawer #leftDrawer class="sidenav" mode="over">
+  <mat-drawer #leftDrawer mode="over">
     <app-prevowned-list [games]="prevowned"></app-prevowned-list>
   </mat-drawer>
   
@@ -130,7 +130,7 @@
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
-  <mat-drawer #rightDrawer class="sidenav" mode="over" position="end">
+  <mat-drawer #rightDrawer mode="over" position="end">
     <app-wishlist></app-wishlist>
   </mat-drawer>
 </mat-drawer-container>

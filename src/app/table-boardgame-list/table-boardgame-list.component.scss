@@ -73,9 +73,10 @@ button.miniFAB {
   right: .5em;
 }
 
-.sidenav {
+mat-drawer {
   display: flex;
   height: 100%;
+  max-width: 80%;
   align-items: center;
   justify-content: center;
 }
