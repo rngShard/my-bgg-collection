@@ -24,6 +24,19 @@ export class BggApiService {
       observe: 'response'
     });
   }
+  getBGGWishlist(prio: number): Observable<any> {
+    let url = `${this.BGG_API_ENDPOINT}/collection?username=${Config.bgg.username}&wishlist=1`;
+    if (prio < 1 || prio > 5) {
+      throw Observable.throw("Invallid option for wishlist prio");
+    } else {
+      url += `&wishlistpriority=${prio}`;
+
+      return this._http.get(url, {
+        responseType: 'text',
+        observe: 'response'
+      });
+    }
+  }
 
   parseBGGCollectionXML(data): Promise<BggBoardgame[]> {
     return new Promise(resolve => {

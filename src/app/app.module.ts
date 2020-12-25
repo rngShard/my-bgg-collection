@@ -28,6 +28,8 @@ import { BoardgameSimpleCardComponent } from './table-boardgame-list/boardgame-s
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PrevownedListComponent } from './table-boardgame-list/prevowned-list/prevowned-list.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { PrevownedListComponent } from './table-boardgame-list/prevowned-list/pr
     ArchiveTableComponent,
     PreorderedTableComponent,
     BoardgameSimpleCardComponent,
-    PrevownedListComponent
+    PrevownedListComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { PrevownedListComponent } from './table-boardgame-list/prevowned-list/pr
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

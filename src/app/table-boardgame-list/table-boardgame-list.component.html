@@ -126,12 +126,11 @@
     </mat-tab>
   </mat-tab-group>
 
-  <button class="miniFAB upperRightFABButton" mat-mini-fab color="secondary" matTooltip="Wishlist" (click)="rightDrawer.toggle()" disabled>
+  <button class="miniFAB upperRightFABButton" mat-mini-fab color="secondary" matTooltip="Wishlist" (click)="rightDrawer.toggle()">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
   <mat-drawer #rightDrawer class="sidenav" mode="over" position="end">
-    <p> This is another sidenav </p>
+    <app-wishlist></app-wishlist>
   </mat-drawer>
-
 </mat-drawer-container>
