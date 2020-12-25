@@ -27,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { BoardgameSimpleCardComponent } from './table-boardgame-list/boardgame-simple-card/boardgame-simple-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { PrevownedListComponent } from './table-boardgame-list/prevowned-list/prevowned-list.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     BoardgameDetailsCardComponent,
     ArchiveTableComponent,
     PreorderedTableComponent,
-    BoardgameSimpleCardComponent
+    BoardgameSimpleCardComponent,
+    PrevownedListComponent
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   boardgames: BggBoardgame[] = [];
+  prevowned: BggBoardgame[] = [];
   fortrade: BggBoardgame[] = [];
   own: BggBoardgameThing[] = [];
   preordered: BggBoardgame[] = [];
@@ -101,11 +102,10 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
 
   sortBoardgamesByCollection() {
     let c = 0;
-    let ft = [], po = [];
+    let prevowned = [], fortrade = [], preordered = [];
     for (let game of this.boardgames) {
-      if (game.status.fortrade) {
-        ft.push(game);
-      }
+      if (game.status.prevowned) { prevowned.push(game); }
+      if (game.status.fortrade) { fortrade.push(game); }
       if (game.status.own) {
         this._bggApiService.getBGGBoardgame(game.objectid).then((gameThing: BggBoardgameThing) => {
           gameThing.numPlays = game.numPlays;
@@ -113,17 +113,17 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
           this.dataSource.data = this.own;
         });
       }
-      if (game.status.preordered) {
-        po.push(game);
-      }
-      if (!game.status.fortrade && !game.status.own && !game.status.preordered) {
+      if (game.status.preordered) { preordered.push(game); }
+      if (!game.status.prevowned && !game.status.fortrade && !game.status.own && !game.status.preordered) {
         console.log(`Found game without Collection-Array:`, game);
-      }
+      }   // note: all ifs, no else-ifs (could be in multiple collections)
+
       c++;
       if (c === this.boardgames.length) {
-        this.fortrade = ft;
-        this.preordered = po;
-        console.log(`Sorted ${this.boardgames.length} games by collection:\nForTrade (${this.fortrade.length}), Own (API calls pending), Preordered (${this.preordered.length})`)
+        this.prevowned = prevowned;
+        this.fortrade = fortrade;
+        this.preordered = preordered;
+        console.log(`Sorted ${this.boardgames.length} games by collection:\nPrevOwned (${this.prevowned.length}), ForTrade (${this.fortrade.length}), Own (API calls pending), Preordered (${this.preordered.length})`)
       }
     }
   }

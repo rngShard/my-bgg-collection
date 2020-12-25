@@ -1,6 +1,6 @@
 <mat-drawer-container>
   <mat-drawer #leftDrawer class="sidenav" mode="over">
-    <p> This is a sidenav </p>
+    <app-prevowned-list [games]="prevowned"></app-prevowned-list>
   </mat-drawer>
   
   <button class="miniFAB upperLeftFABButton" mat-mini-fab color="primary" matTooltip="Previously Owned" (click)="leftDrawer.toggle()">
@@ -126,7 +126,7 @@
     </mat-tab>
   </mat-tab-group>
 
-  <button class="miniFAB upperRightFABButton" mat-mini-fab color="secondary" matTooltip="Wishlist" (click)="rightDrawer.toggle()">
+  <button class="miniFAB upperRightFABButton" mat-mini-fab color="secondary" matTooltip="Wishlist" (click)="rightDrawer.toggle()" disabled>
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
