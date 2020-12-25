@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   boardgames: BggBoardgame[] = [];
+  prevowned: BggBoardgame[] = [];
   fortrade: BggBoardgame[] = [];
   own: BggBoardgameThing[] = [];
   preordered: BggBoardgame[] = [];
@@ -31,12 +32,12 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
   availableColumns: ColumnDisplayToggleItem[] = [
     new ColumnDisplayToggleItem('yearPublished', 'Publishing year'),
     new ColumnDisplayToggleItem('numPlayersRecommended', 'Recommended number of players'),
-    new ColumnDisplayToggleItem('playingTime', 'Expected playing time', true),
+    new ColumnDisplayToggleItem('playingTime', 'Expected playing time'),
     new ColumnDisplayToggleItem('playerAge', 'Recommended player age'),
     new ColumnDisplayToggleItem('ratingAverage', 'Average rating on BGG'),
     new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG'),
     new ColumnDisplayToggleItem('rank', 'Rank on BGG', true),
-    new ColumnDisplayToggleItem('numPlays', 'My logged plays number on BGG')
+    new ColumnDisplayToggleItem('numPlays', 'My logged plays number on BGG', true)
   ]
   columnsToDisplay = ['thumbnail', 'name'];
   expandedRow: BggBoardgameThing | null;
@@ -101,11 +102,10 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
 
   sortBoardgamesByCollection() {
     let c = 0;
-    let ft = [], po = [];
+    let prevowned = [], fortrade = [], preordered = [];
     for (let game of this.boardgames) {
-      if (game.status.fortrade) {
-        ft.push(game);
-      }
+      if (game.status.prevowned) { prevowned.push(game); }
+      if (game.status.fortrade) { fortrade.push(game); }
       if (game.status.own) {
         this._bggApiService.getBGGBoardgame(game.objectid).then((gameThing: BggBoardgameThing) => {
           gameThing.numPlays = game.numPlays;
@@ -113,17 +113,17 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
           this.dataSource.data = this.own;
         });
       }
-      if (game.status.preordered) {
-        po.push(game);
-      }
-      if (!game.status.fortrade && !game.status.own && !game.status.preordered) {
+      if (game.status.preordered) { preordered.push(game); }
+      if (!game.status.prevowned && !game.status.fortrade && !game.status.own && !game.status.preordered) {
         console.log(`Found game without Collection-Array:`, game);
-      }
+      }   // note: all ifs, no else-ifs (could be in multiple collections)
+
       c++;
       if (c === this.boardgames.length) {
-        this.fortrade = ft;
-        this.preordered = po;
-        console.log(`Sorted ${this.boardgames.length} games by collection:\nForTrade (${this.fortrade.length}), Own (API calls pending), Preordered (${this.preordered.length})`)
+        this.prevowned = prevowned;
+        this.fortrade = fortrade;
+        this.preordered = preordered;
+        console.log(`Sorted ${this.boardgames.length} games by collection:\nPrevOwned (${this.prevowned.length}), ForTrade (${this.fortrade.length}), Own (API calls pending), Preordered (${this.preordered.length})`)
       }
     }
   }

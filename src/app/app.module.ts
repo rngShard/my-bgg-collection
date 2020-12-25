@@ -25,6 +25,11 @@ import { ArchiveTableComponent } from './table-boardgame-list/archive-table/arch
 import { PreorderedTableComponent } from './table-boardgame-list/preordered-table/preordered-table.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { BoardgameSimpleCardComponent } from './table-boardgame-list/boardgame-simple-card/boardgame-simple-card.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { PrevownedListComponent } from './table-boardgame-list/prevowned-list/prevowned-list.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -37,7 +42,9 @@ import { BoardgameSimpleCardComponent } from './table-boardgame-list/boardgame-s
     BoardgameDetailsCardComponent,
     ArchiveTableComponent,
     PreorderedTableComponent,
-    BoardgameSimpleCardComponent
+    BoardgameSimpleCardComponent,
+    PrevownedListComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,10 @@ import { BoardgameSimpleCardComponent } from './table-boardgame-list/boardgame-s
     MatTabsModule,
     MatCardModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
