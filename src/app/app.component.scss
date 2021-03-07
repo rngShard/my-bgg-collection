@@ -1,18 +1,11 @@
-// .content {
-//   display: flex;
-//   margin: 82px auto 32px;
-//   padding: 0 16px;
-//   max-width: 960px;
-//   flex-direction: column;
-//   align-items: center;
-// }
-
-/* Responsive Styles
-@media screen and (max-width: 767px) {
+#overlaySpacer {
+    height: 4em;
 
 }
-
-@media screen and (max-width: 575px) {
-  
+#footer {
+    bottom: 0;
+    position: fixed;
+    width: 15em;
+    left: 50%;
+    margin-left: -7.5em;
 }
-*/
