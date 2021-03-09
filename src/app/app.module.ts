@@ -30,6 +30,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { PrevownedListComponent } from './table-boardgame-list/prevowned-list/prevowned-list.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CollectionComponent } from './table-boardgame-list/collection/collection.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     PreorderedTableComponent,
     BoardgameSimpleCardComponent,
     PrevownedListComponent,
-    WishlistComponent
+    WishlistComponent,
+    CollectionComponent
   ],
   imports: [
     BrowserModule,

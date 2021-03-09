@@ -11,36 +11,27 @@ import { BggBoardgame } from 'src/app/bgg-objects';
 })
 export class ArchiveTableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() games: BggBoardgame[];
-  tableDataSourceGames: BggBoardgame[];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   
   dataSource: MatTableDataSource<BggBoardgame>;
   columnsToDisplay = ['thumbnail', 'name', 'yearPublished', 'numPlays'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
- 
   constructor() {
-    this.games = [];
     this.dataSource = new MatTableDataSource([]);
-    this.tableDataSourceGames = [];
   }
 
   ngOnInit(): void {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // for (const propName in changes) {
-    //   const chng = changes[propName];
-    //   if (propName === 'games') {
-        this.dataSource.data = this.games;
-    //     this.tableDataSourceGames = chng.currentValue;
-    //   }
-    // }
-  }
-
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.dataSource.data = this.games;
   }
 
 }

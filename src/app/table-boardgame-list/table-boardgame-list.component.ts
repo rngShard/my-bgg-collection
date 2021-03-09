@@ -1,12 +1,7 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { BggBoardgame, BggBoardgameThing } from '../bgg-objects';
 import { BggApiService } from '../bgg-api.service';
-import { ColumnDisplayToggleItem } from './columnDisplayToggleItem';
-import { AbstractControl, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -21,61 +16,17 @@ import { MatDialog } from '@angular/material/dialog';
     ]),
   ],
 })
-export class TableBoardgameListComponent implements OnInit, AfterViewInit {
+export class TableBoardgameListComponent implements OnInit {
   boardgames: BggBoardgame[] = [];
   prevowned: BggBoardgame[] = [];
   fortrade: BggBoardgame[] = [];
-  own: BggBoardgameThing[] = [];
+  own: BggBoardgame[] = [];
   preordered: BggBoardgame[] = [];
 
-  dataSource: MatTableDataSource<BggBoardgameThing>;
-  availableColumns: ColumnDisplayToggleItem[] = [
-    new ColumnDisplayToggleItem('yearPublished', 'Publishing year'),
-    new ColumnDisplayToggleItem('numPlayersRecommended', 'Recommended number of players'),
-    new ColumnDisplayToggleItem('playingTime', 'Expected playing time'),
-    new ColumnDisplayToggleItem('playerAge', 'Recommended player age'),
-    new ColumnDisplayToggleItem('ratingAverage', 'Average rating on BGG'),
-    new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG'),
-    new ColumnDisplayToggleItem('rank', 'Rank on BGG', true),
-    new ColumnDisplayToggleItem('numPlays', 'My logged plays number on BGG', true)
-  ]
-  columnsToDisplay = ['thumbnail', 'name'];
-  expandedRow: BggBoardgameThing | null;
-  readonly formControl: AbstractControl;
-  
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
- 
   constructor(
     private _bggApiService: BggApiService,
-    formBuilder: FormBuilder,
     public dialog: MatDialog
-  ) {
-    this.dataSource = new MatTableDataSource(this.own);
-
-    for (let availCol of this.availableColumns) {
-      if (availCol.defaultToggled) {
-        this.columnsToDisplay.push(availCol.colName);
-      }
-    }
-
-    this.dataSource.filterPredicate = ((data, filter) => {
-      const nameContains = !filter.name || data.name.toLowerCase().includes(filter.name);
-      const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers);
-      const weightInRange = !filter.weight || (+filter.weight - 0.6 <= data.weightAverage && data.weightAverage <= +filter.weight + 0.6);
-      return nameContains && numPlayers && weightInRange;
-    }) as (BggBoardgameThing, string) => boolean;
-
-    this.formControl = formBuilder.group({
-      name: '',
-      numPlayers: '',
-      weight: '',
-    });
-    this.formControl.valueChanges.subscribe(value => {
-      const filter = {...value, name: value.name.trim().toLowerCase()} as string;
-      this.dataSource.filter = filter;
-    });
-  }
+  ) {}
   
   ngOnInit() {
     this._bggApiService.getBGGCollection().subscribe(response => {
@@ -95,24 +46,13 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   sortBoardgamesByCollection() {
     let c = 0;
-    let prevowned = [], fortrade = [], preordered = [];
+    let prevowned = [], fortrade = [], preordered = [], own = [];
     for (let game of this.boardgames) {
       if (game.status.prevowned) { prevowned.push(game); }
       if (game.status.fortrade) { fortrade.push(game); }
-      if (game.status.own) {
-        this._bggApiService.getBGGBoardgame(game.objectid).then((gameThing: BggBoardgameThing) => {
-          gameThing.numPlays = game.numPlays;
-          this.own.push(gameThing);
-          this.dataSource.data = this.own;
-        });
-      }
+      if (game.status.own) { own.push(game); }
       if (game.status.preordered) { preordered.push(game); }
       if (!game.status.prevowned && !game.status.fortrade && !game.status.own && !game.status.preordered) {
         console.log(`Found game without Collection-Array:`, game);
@@ -122,8 +62,9 @@ export class TableBoardgameListComponent implements OnInit, AfterViewInit {
       if (c === this.boardgames.length) {
         this.prevowned = prevowned;
         this.fortrade = fortrade;
+        this.own = own;
         this.preordered = preordered;
-        console.log(`Sorted ${this.boardgames.length} games by collection:\nPrevOwned (${this.prevowned.length}), ForTrade (${this.fortrade.length}), Own (API calls pending), Preordered (${this.preordered.length})`)
+        console.log(`Sorted ${this.boardgames.length} games by collection:\nPrevOwned (${this.prevowned.length}), ForTrade (${this.fortrade.length}), Own (${this.own.length}), Preordered (${this.preordered.length})`)
       }
     }
   }
