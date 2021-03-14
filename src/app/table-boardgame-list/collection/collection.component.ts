@@ -72,27 +72,32 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.gameThings = this.getBggThingsFromGames(this.games);   // <- TODO: async promise-based s.t. once API calls complete
-    this.dataSource.data = this.gameThings;
+    if (changes.games.currentValue.length > 0) {    // if changes non-empty
+      this.getBggThingsFromGames(this.games).then(gameThings => {
+        this.gameThings = gameThings;
+        this.dataSource.data = this.gameThings;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }
   }
 
-  private getBggThingsFromGames(games: BggBoardgame[]): BggBoardgameThing[] {
-    let gameThings: BggBoardgameThing[] = [];
-    for (let game of games) {
-      this._bggApiService.getBGGBoardgame(game.objectid).then((gameThing: BggBoardgameThing) => {
-        gameThing.numPlays = game.numPlays;
-        this.gameThings.push(gameThing);
-      });
-      if (gameThings.length === games.length) {
-        // Resolve promise & return
-        return [];
+  private getBggThingsFromGames(games: BggBoardgame[]): Promise<BggBoardgameThing[]> {
+    return new Promise(resolve => {
+      let collectedGameThings: BggBoardgameThing[] = [];
+      for (let game of games) {
+        this._bggApiService.getBGGBoardgame(game.objectid).then((gameThing: BggBoardgameThing) => {
+          gameThing.numPlays = game.numPlays;
+          collectedGameThings.push(gameThing);
+          if (collectedGameThings.length === games.length) {
+            resolve(collectedGameThings);
+          }
+        });
       }
-    }
+    });
   }
 
 }
