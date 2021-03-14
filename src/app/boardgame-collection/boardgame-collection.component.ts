@@ -4,11 +4,11 @@ import { BggApiService } from '../bgg-api.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-table-boardgame-list',
-  templateUrl: './table-boardgame-list.component.html',
-  styleUrls: ['./table-boardgame-list.component.scss']
+  selector: 'app-boardgame-collection',
+  templateUrl: './boardgame-collection.component.html',
+  styleUrls: ['./boardgame-collection.component.scss']
 })
-export class TableBoardgameListComponent implements OnInit {
+export class BoardgameCollectionComponent implements OnInit {
   boardgames: BggBoardgame[] = [];
   prevowned: BggBoardgame[] = [];
   fortrade: BggBoardgame[] = [];
