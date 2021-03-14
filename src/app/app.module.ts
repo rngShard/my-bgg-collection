@@ -21,7 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BoardgameDetailsCardComponent } from './table-boardgame-list/boardgame-details-card/boardgame-details-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { ArchiveTableComponent } from './table-boardgame-list/archive-table/archive-table.component';
+import { ArchiveComponent } from './table-boardgame-list/archive/archive.component';
 import { PreorderedTableComponent } from './table-boardgame-list/preordered-table/preordered-table.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { BoardgameSimpleCardComponent } from './table-boardgame-list/boardgame-simple-card/boardgame-simple-card.component';
@@ -41,7 +41,7 @@ import { CollectionComponent } from './table-boardgame-list/collection/collectio
     HeaderToolbarComponent,
     FooterComponent,
     BoardgameDetailsCardComponent,
-    ArchiveTableComponent,
+    ArchiveComponent,
     PreorderedTableComponent,
     BoardgameSimpleCardComponent,
     PrevownedListComponent,

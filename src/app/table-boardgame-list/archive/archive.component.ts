@@ -5,11 +5,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BggBoardgame } from 'src/app/bgg-objects';
 
 @Component({
-  selector: 'app-archive-table',
-  templateUrl: './archive-table.component.html',
-  styleUrls: ['./archive-table.component.scss']
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.scss']
 })
-export class ArchiveTableComponent implements OnInit, AfterViewInit, OnChanges {
+export class ArchiveComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() games: BggBoardgame[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
