@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BggBoardgame } from 'src/app/bgg-objects';
 
 @Component({
-  selector: 'app-prevowned-list',
-  templateUrl: './prevowned-list.component.html',
-  styleUrls: ['./prevowned-list.component.scss']
+  selector: 'app-prevowned',
+  templateUrl: './prevowned.component.html',
+  styleUrls: ['./prevowned.component.scss']
 })
-export class PrevownedListComponent implements OnInit {
+export class PrevownedComponent implements OnInit {
   @Input() games: BggBoardgame[];
 
   constructor() { }

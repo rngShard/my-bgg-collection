@@ -1,0 +1,25 @@
+button.miniFAB {
+  position: absolute;
+  z-index: 9;
+  top: 4px;   // mini-fab = 40px, tablist = 48px;
+}
+.upperLeftFABButton {
+  left: .5em;
+}
+
+.upperRightFABButton {
+  right: .5em;
+}
+
+mat-drawer {
+  display: flex;
+  height: 100%;
+  max-width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-drawer-container {
+  height: 100%;
+  background-color: gainsboro;
+}

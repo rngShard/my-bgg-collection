@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableBoardgameListComponent } from './table-boardgame-list.component';
+import { ArchiveComponent } from './archive.component';
 
-describe('TableBoardgameListComponent', () => {
-  let component: TableBoardgameListComponent;
-  let fixture: ComponentFixture<TableBoardgameListComponent>;
+describe('ArchiveTableComponent', () => {
+  let component: ArchiveComponent;
+  let fixture: ComponentFixture<ArchiveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableBoardgameListComponent ]
+      declarations: [ ArchiveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TableBoardgameListComponent);
+    fixture = TestBed.createComponent(ArchiveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,29 @@
+<mat-drawer-container>
+  <mat-drawer #leftDrawer mode="over">
+    <app-prevowned [games]="prevowned"></app-prevowned>
+  </mat-drawer>
+  
+  <button class="miniFAB upperLeftFABButton" mat-mini-fab color="primary" matTooltip="Previously Owned" (click)="leftDrawer.toggle()">
+    <mat-icon>inventory</mat-icon>
+  </button>
+
+  <mat-tab-group mat-align-tabs="center" selectedIndex="1">
+    <mat-tab label="Archive">
+      <app-archive [games]="fortrade"></app-archive>
+    </mat-tab>
+    <mat-tab label="Collection">
+      <app-collection [games]="own"></app-collection>
+    </mat-tab>
+    <mat-tab label="Preordered">
+      <app-preordered [games]="preordered"></app-preordered>
+    </mat-tab>
+  </mat-tab-group>
+
+  <button class="miniFAB upperRightFABButton" mat-mini-fab color="secondary" matTooltip="Wishlist" (click)="rightDrawer.toggle()">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+
+  <mat-drawer #rightDrawer mode="over" position="end">
+    <app-wishlist></app-wishlist>
+  </mat-drawer>
+</mat-drawer-container>

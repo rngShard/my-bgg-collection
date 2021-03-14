@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArchiveTableComponent } from './archive-table.component';
+import { PreorderedComponent } from './preordered.component';
 
-describe('ArchiveTableComponent', () => {
-  let component: ArchiveTableComponent;
-  let fixture: ComponentFixture<ArchiveTableComponent>;
+describe('PreorderedComponent', () => {
+  let component: PreorderedComponent;
+  let fixture: ComponentFixture<PreorderedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArchiveTableComponent ]
+      declarations: [ PreorderedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArchiveTableComponent);
+    fixture = TestBed.createComponent(PreorderedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrevownedListComponent } from './prevowned-list.component';
+import { CollectionComponent } from './collection.component';
 
-describe('PrevownedListComponent', () => {
-  let component: PrevownedListComponent;
-  let fixture: ComponentFixture<PrevownedListComponent>;
+describe('CollectionComponent', () => {
+  let component: CollectionComponent;
+  let fixture: ComponentFixture<CollectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrevownedListComponent ]
+      declarations: [ CollectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrevownedListComponent);
+    fixture = TestBed.createComponent(CollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

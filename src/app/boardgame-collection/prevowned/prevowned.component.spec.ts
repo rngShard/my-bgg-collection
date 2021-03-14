@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreorderedTableComponent } from './preordered-table.component';
+import { PrevownedComponent } from './prevowned.component';
 
-describe('PreorderedTableComponent', () => {
-  let component: PreorderedTableComponent;
-  let fixture: ComponentFixture<PreorderedTableComponent>;
+describe('PrevownedListComponent', () => {
+  let component: PrevownedComponent;
+  let fixture: ComponentFixture<PrevownedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreorderedTableComponent ]
+      declarations: [ PrevownedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreorderedTableComponent);
+    fixture = TestBed.createComponent(PrevownedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
