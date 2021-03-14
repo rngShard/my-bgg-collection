@@ -7,11 +7,19 @@ import { ColumnDisplayToggleItem } from './columnDisplayToggleItem';
 import { AbstractControl, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BggApiService } from 'src/app/bgg-api.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
-  styleUrls: ['./collection.component.scss']
+  styleUrls: ['./collection.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ])
+  ]
 })
 export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() games: BggBoardgame[];
@@ -33,21 +41,21 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   ];
   columnsToDisplay = ['thumbnail', 'name'];
   expandedRow: BggBoardgameThing | null;
-  // readonly formControl: AbstractControl;
+  readonly formControl: AbstractControl;
   
   constructor(
-    // formBuilder: FormBuilder,
+    formBuilder: FormBuilder,
     public dialog: MatDialog,
     private _bggApiService: BggApiService
   ) {
     this.gameThings = []
     this.dataSource = new MatTableDataSource(this.gameThings);
 
-    // this.formControl = formBuilder.group({
-    //   name: '',
-    //   numPlayers: '',
-    //   weight: '',
-    // });
+    this.formControl = formBuilder.group({
+      name: '',
+      numPlayers: '',
+      weight: '',
+    });
   }
 
   ngOnInit() {
@@ -57,17 +65,17 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
       }
     }
 
-    // this.dataSource.filterPredicate = ((data, filter) => {
-    //   const nameContains = !filter.name || data.name.toLowerCase().includes(filter.name);
-    //   const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers);
-    //   const weightInRange = !filter.weight || (+filter.weight - 0.6 <= data.weightAverage && data.weightAverage <= +filter.weight + 0.6);
-    //   return nameContains && numPlayers && weightInRange;
-    // }) as (BggBoardgameThing, string) => boolean;
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const nameContains = !filter.name || data.name.toLowerCase().includes(filter.name);
+      const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers);
+      const weightInRange = !filter.weight || (+filter.weight - 0.6 <= data.weightAverage && data.weightAverage <= +filter.weight + 0.6);
+      return nameContains && numPlayers && weightInRange;
+    }) as (BggBoardgameThing, string) => boolean;
 
-    // this.formControl.valueChanges.subscribe(value => {
-    //   const filter = {...value, name: value.name.trim().toLowerCase()} as string;
-    //   this.dataSource.filter = filter;
-    // });
+    this.formControl.valueChanges.subscribe(value => {
+      const filter = {...value, name: value.name.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
     
   }
 

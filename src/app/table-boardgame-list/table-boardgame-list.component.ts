@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import { BggBoardgame, BggBoardgameThing } from '../bgg-objects';
+import { BggBoardgame } from '../bgg-objects';
 import { BggApiService } from '../bgg-api.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-table-boardgame-list',
   templateUrl: './table-boardgame-list.component.html',
-  styleUrls: ['./table-boardgame-list.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  styleUrls: ['./table-boardgame-list.component.scss']
 })
 export class TableBoardgameListComponent implements OnInit {
   boardgames: BggBoardgame[] = [];
