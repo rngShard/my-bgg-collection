@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrevownedListComponent } from './prevowned-list.component';
+import { PreorderedComponent } from './preordered.component';
 
-describe('PrevownedListComponent', () => {
-  let component: PrevownedListComponent;
-  let fixture: ComponentFixture<PrevownedListComponent>;
+describe('PreorderedComponent', () => {
+  let component: PreorderedComponent;
+  let fixture: ComponentFixture<PreorderedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrevownedListComponent ]
+      declarations: [ PreorderedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrevownedListComponent);
+    fixture = TestBed.createComponent(PreorderedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

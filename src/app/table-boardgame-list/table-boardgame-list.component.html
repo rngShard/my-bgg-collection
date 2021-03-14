@@ -1,6 +1,6 @@
 <mat-drawer-container>
   <mat-drawer #leftDrawer mode="over">
-    <app-prevowned-list [games]="prevowned"></app-prevowned-list>
+    <app-prevowned [games]="prevowned"></app-prevowned>
   </mat-drawer>
   
   <button class="miniFAB upperLeftFABButton" mat-mini-fab color="primary" matTooltip="Previously Owned" (click)="leftDrawer.toggle()">
@@ -15,7 +15,7 @@
       <app-collection [games]="own"></app-collection>
     </mat-tab>
     <mat-tab label="Preordered">
-      <app-preordered-table [games]="preordered"></app-preordered-table>
+      <app-preordered [games]="preordered"></app-preordered>
     </mat-tab>
   </mat-tab-group>
 
