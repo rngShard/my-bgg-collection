@@ -12,12 +12,11 @@
       {{game.playerAge}}+ years
     </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="game.image">
+  <!-- <img mat-card-image [src]="game.image"> -->
   <mat-card-content>
     <p [innerHTML]="game.description"></p>
   </mat-card-content>
   <mat-card-actions>
-    <!-- <button mat-button disabled>Log play +1</button>   // needed to be logged in for this ... -->
     <mat-chip-list>
       <mat-chip *ngFor="let category of game.categories" color="primary" selected> {{category}} </mat-chip>
       <mat-chip *ngFor="let mechanic of game.mechanics" color="secondary" selected> {{mechanic}} </mat-chip>
