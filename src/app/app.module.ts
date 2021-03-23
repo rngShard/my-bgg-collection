@@ -31,6 +31,7 @@ import { PrevownedComponent } from './boardgame-collection/prevowned/prevowned.c
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CollectionComponent } from './boardgame-collection/collection/collection.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { CollectionComponent } from './boardgame-collection/collection/collectio
     MatDividerModule,
     MatIconModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

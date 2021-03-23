@@ -58,8 +58,11 @@ th.attrs, td.attrs {
     .minorFilter {
         width: 5em;
     }
+    .mediumFilter {
+        width: 7.5em;
+    }
 
-    button {
+    button, mat-slide-toggle {
         margin-left: 1em;
     }
 }

@@ -5,7 +5,7 @@
   </mat-form-field>
   
   <mat-form-field class="minorFilter">
-    <mat-label>Players</mat-label>
+    <mat-label> Players </mat-label>
     <mat-select matNativeControl formControlName="numPlayers">
       <mat-option value="1"> 1 </mat-option>
       <mat-option value="2"> 2 </mat-option>
@@ -19,7 +19,7 @@
   </mat-form-field>
   
   <mat-form-field class="minorFilter">
-    <mat-label>Time</mat-label>
+    <mat-label> Time </mat-label>
     <mat-select matNativeControl formControlName="time">
       <mat-option value="15"> 15 min </mat-option>
       <mat-option value="30"> 30 min </mat-option>
@@ -31,7 +31,22 @@
     </mat-select>
   </mat-form-field>
   
+  <mat-form-field class="mediumFilter" *ngIf="advancedFiltersToggled">
+    <mat-label> Category </mat-label>
+    <mat-select matNativeControl formControlName="category">
+      <mat-option value="todo"> ... TODO ... </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field class="mediumFilter" *ngIf="advancedFiltersToggled">
+    <mat-label> Mechanic </mat-label>
+    <mat-select matNativeControl formControlName="mechanic">
+      <mat-option value="todo"> ... TODO ... </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
   <button mat-raised-button color="warn" (click)="resetForm()"> Clear </button>
+  <mat-slide-toggle (change)="toggleAdvancedFilters()" color="primary"> Advanced </mat-slide-toggle>
 </form>
 
 <div class="mat-elevation-z8">

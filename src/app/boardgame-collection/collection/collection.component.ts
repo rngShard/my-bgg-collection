@@ -42,6 +42,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   columnsToDisplay = ['thumbnail', 'name'];
   expandedRow: BggBoardgameThing | null;
   formControl: AbstractControl;
+  advancedFiltersToggled: boolean;
   
   constructor(
     formBuilder: FormBuilder,
@@ -50,12 +51,14 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   ) {
     this.gameThings = []
     this.dataSource = new MatTableDataSource(this.gameThings);
-
     this.formControl = formBuilder.group({
       name: '',
       numPlayers: '',
-      time: ''
+      time: '',
+      category: '',
+      mechanic: ''
     });
+    this.advancedFiltersToggled = false;
   }
 
   ngOnInit() {
@@ -112,8 +115,14 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     this.formControl.reset({
       name: '',
       numPlayers: '',
-      time: ''
+      time: '',
+      category: '',
+      mechanic: ''
     });
+  }
+
+  toggleAdvancedFilters(): void {
+    this.advancedFiltersToggled = !this.advancedFiltersToggled;
   }
 
 }
