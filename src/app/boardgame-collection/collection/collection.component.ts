@@ -54,7 +54,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     this.formControl = formBuilder.group({
       name: '',
       numPlayers: '',
-      // weight: '',
+      time: ''
     });
   }
 
@@ -68,8 +68,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     this.dataSource.filterPredicate = ((data, filter) => {
       const nameContains = !filter.name || data.name.toLowerCase().includes(filter.name);
       const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers)
-      // const weightInRange = !filter.weight || (+filter.weight - 0.6 <= data.weightAverage && data.weightAverage <= +filter.weight + 0.6);
-      return nameContains && numPlayers;// && weightInRange;
+      const time = !filter.time || (data.playingTimeMin <= +filter.time && +filter.time <= data.playingTimeMax);
+      return nameContains && numPlayers && time;
     }) as (BggBoardgameThing, string) => boolean;
 
     this.formControl.valueChanges.subscribe(value => {
@@ -112,7 +112,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     this.formControl.reset({
       name: '',
       numPlayers: '',
-      // weight: '',
+      time: ''
     });
   }
 

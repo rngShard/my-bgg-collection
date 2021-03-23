@@ -18,16 +18,19 @@
     </mat-select>
   </mat-form-field>
   
-  <!-- <mat-form-field>
-    <mat-label>Filter by weight</mat-label>
-    <mat-select matNativeControl formControlName="weight">
-      <mat-option value="1.5"> Light </mat-option>
-      <mat-option value="2.5"> Medium </mat-option>
-      <mat-option value="3.5"> Heavy </mat-option>
-      <mat-option value="4.5"> Extreme </mat-option>
+  <mat-form-field class="minorFilter">
+    <mat-label>Time</mat-label>
+    <mat-select matNativeControl formControlName="time">
+      <mat-option value="15"> 15 min </mat-option>
+      <mat-option value="30"> 30 min </mat-option>
+      <mat-option value="45"> 45 min </mat-option>
+      <mat-option value="60"> 1 h </mat-option>
+      <mat-option value="90"> 1.5 h </mat-option>
+      <mat-option value="120"> 2 h </mat-option>
+      <mat-option value="180"> 3 h </mat-option>
     </mat-select>
-  </mat-form-field> -->
-
+  </mat-form-field>
+  
   <button mat-raised-button color="warn" (click)="resetForm()"> Clear </button>
 </form>
 

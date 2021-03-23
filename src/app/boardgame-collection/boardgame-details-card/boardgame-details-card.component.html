@@ -9,7 +9,8 @@
       <ng-container *ngIf="game.numPlayersMin == game.numPlayersMax"> {{game.numPlayersMin}} players, </ng-container>
       <ng-container *ngIf="game.playingTimeMin != game.playingTimeMax"> {{game.playingTimeMin}} - {{game.playingTimeMax}} min, </ng-container>
       <ng-container *ngIf="game.playingTimeMin == game.playingTimeMax"> {{game.playingTimeMin}} min, </ng-container>
-      {{game.playerAge}}+ years
+      {{game.playerAge}}+ years,
+      Weighted {{game.weightAverage}} / 5
     </mat-card-subtitle>
   </mat-card-header>
   <!-- <img mat-card-image [src]="game.image"> -->
