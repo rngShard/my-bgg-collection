@@ -47,12 +47,20 @@ th.attrs, td.attrs {
 
 .filter-flex-container {
     display: flex;
+    align-items: center;
     justify-content: center;
 
     mat-form-field {
-        width: 7em;
-        margin: 0 .5em;
-        flex: 1;
+        margin: auto .5em;
+        // flex: 1;     // not used in order to have field of diff sizes
+    }
+
+    .minorFilter {
+        width: 6.5em;
+    }
+
+    button {
+        margin-left: 1em;
     }
 }
 

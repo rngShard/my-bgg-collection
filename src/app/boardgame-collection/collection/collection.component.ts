@@ -41,7 +41,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   ];
   columnsToDisplay = ['thumbnail', 'name'];
   expandedRow: BggBoardgameThing | null;
-  readonly formControl: AbstractControl;
+  formControl: AbstractControl;
   
   constructor(
     formBuilder: FormBuilder,
@@ -54,7 +54,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     this.formControl = formBuilder.group({
       name: '',
       numPlayers: '',
-      weight: '',
+      // weight: '',
     });
   }
 
@@ -67,9 +67,9 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.dataSource.filterPredicate = ((data, filter) => {
       const nameContains = !filter.name || data.name.toLowerCase().includes(filter.name);
-      const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers);
-      const weightInRange = !filter.weight || (+filter.weight - 0.6 <= data.weightAverage && data.weightAverage <= +filter.weight + 0.6);
-      return nameContains && numPlayers && weightInRange;
+      const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers)
+      // const weightInRange = !filter.weight || (+filter.weight - 0.6 <= data.weightAverage && data.weightAverage <= +filter.weight + 0.6);
+      return nameContains && numPlayers;// && weightInRange;
     }) as (BggBoardgameThing, string) => boolean;
 
     this.formControl.valueChanges.subscribe(value => {
@@ -105,6 +105,14 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
           }
         });
       }
+    });
+  }
+
+  resetForm(): void {
+    this.formControl.reset({
+      name: '',
+      numPlayers: '',
+      // weight: '',
     });
   }
 
