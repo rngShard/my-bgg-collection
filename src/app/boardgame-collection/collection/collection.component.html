@@ -33,14 +33,14 @@
   
   <mat-form-field class="mediumFilter" *ngIf="advancedFiltersToggled">
     <mat-label> Category </mat-label>
-    <mat-select matNativeControl formControlName="category">
+    <mat-select matNativeControl formControlName="categories" multiple>
       <mat-option *ngFor="let category of BGG_CATEGORIES" [value]="category"> {{category}} </mat-option>
     </mat-select>
   </mat-form-field>
   
   <mat-form-field class="mediumFilter" *ngIf="advancedFiltersToggled">
     <mat-label> Mechanic </mat-label>
-    <mat-select matNativeControl formControlName="mechanic">
+    <mat-select matNativeControl formControlName="mechanics" multiple>
       <mat-option *ngFor="let mechanic of BGG_MECHANICS" [value]="mechanic"> {{mechanic}} </mat-option>
     </mat-select>
   </mat-form-field>

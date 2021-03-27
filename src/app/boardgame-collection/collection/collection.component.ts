@@ -67,8 +67,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
       name: '',
       numPlayers: '',
       time: '',
-      category: '',
-      mechanic: ''
+      categories: '',
+      mechanics: ''
     });
     this.advancedFiltersToggled = false;
   }
@@ -84,8 +84,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
       const nameContains = !filter.name || data.name.toLowerCase().includes(filter.name);
       const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers)
       const time = !filter.time || (data.playingTimeMin <= +filter.time && +filter.time <= data.playingTimeMax);
-      const categoryOf = !filter.category || data.categories.includes(filter.category); //filter.categories.some(x => data.categories.includes(x));
-      const mechanicOf = !filter.mechanic || data.mechanics.includes(filter.mechanic); //filter.mechanics.some(x => data.mechanics.includes(x));
+      const categoryOf = !filter.categories || filter.categories.every(x => data.categories.includes(x));
+      const mechanicOf = !filter.mechanics || filter.mechanics.every(x => data.mechanics.includes(x));
       return nameContains && numPlayers && time && categoryOf && mechanicOf;
     }) as (BggBoardgameThing, string) => boolean;
 
@@ -130,8 +130,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
       name: '',
       numPlayers: '',
       time: '',
-      category: '',
-      mechanic: ''
+      categories: '',
+      mechanics: ''
     });
   }
 
