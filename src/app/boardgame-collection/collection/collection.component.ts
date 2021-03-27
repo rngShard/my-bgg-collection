@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { BggBoardgame, BggBoardgameThing } from 'src/app/bgg-objects';
+import { BggBoardgame, BggBoardgameThing, BggCategory, BggMechanic } from 'src/app/bgg-objects';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ColumnDisplayToggleItem } from './columnDisplayToggleItem';
@@ -22,6 +22,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
+  BGG_MECHANICS: string[];
+  BGG_CATEGORIES: string[];
   @Input() games: BggBoardgame[];
   gameThings: BggBoardgameThing[];
 
@@ -49,6 +51,16 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     public dialog: MatDialog,
     private _bggApiService: BggApiService
   ) {
+    this.BGG_CATEGORIES = [];
+    for (var enumMember in BggCategory) {
+      let isValueProperty:boolean = parseInt(enumMember, 10) >= 0;
+      if (isValueProperty) { this.BGG_CATEGORIES.push(BggCategory[enumMember]); }
+    }
+    this.BGG_MECHANICS = [];
+    for (var enumMember in BggMechanic) {
+      let isValueProperty:boolean = parseInt(enumMember, 10) >= 0;
+      if (isValueProperty) { this.BGG_MECHANICS.push(BggMechanic[enumMember]); }
+    }
     this.gameThings = []
     this.dataSource = new MatTableDataSource(this.gameThings);
     this.formControl = formBuilder.group({
@@ -68,11 +80,13 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
       }
     }
 
-    this.dataSource.filterPredicate = ((data, filter) => {
+    this.dataSource.filterPredicate = ((data:BggBoardgameThing, filter) => {
       const nameContains = !filter.name || data.name.toLowerCase().includes(filter.name);
       const numPlayers = !filter.numPlayers || data.numPlayersRecommended.includes(+filter.numPlayers)
       const time = !filter.time || (data.playingTimeMin <= +filter.time && +filter.time <= data.playingTimeMax);
-      return nameContains && numPlayers && time;
+      const categoryOf = !filter.category || data.categories.includes(filter.category); //filter.categories.some(x => data.categories.includes(x));
+      const mechanicOf = !filter.mechanic || data.mechanics.includes(filter.mechanic); //filter.mechanics.some(x => data.mechanics.includes(x));
+      return nameContains && numPlayers && time && categoryOf && mechanicOf;
     }) as (BggBoardgameThing, string) => boolean;
 
     this.formControl.valueChanges.subscribe(value => {
