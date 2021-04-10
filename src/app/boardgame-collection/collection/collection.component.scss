@@ -35,8 +35,8 @@ mat-form-field.thumbnail {
     padding-right: 0;
 
     img {
-        max-height: 4em;
-        max-width: 9em;
+        max-height: 3.5em;
+        max-width: 7em;
         margin: .5em;
     }
 }
@@ -47,12 +47,23 @@ th.attrs, td.attrs {
 
 .filter-flex-container {
     display: flex;
+    align-items: center;
     justify-content: center;
 
     mat-form-field {
-        width: 7em;
-        margin: 0 .5em;
-        flex: 1;
+        margin: auto .5em;
+        // flex: 1;     // not used in order to have field of diff sizes
+    }
+
+    .minorFilter {
+        width: 5em;
+    }
+    .mediumFilter {
+        width: 7.5em;
+    }
+
+    button, mat-slide-toggle {
+        margin-left: 1em;
     }
 }
 

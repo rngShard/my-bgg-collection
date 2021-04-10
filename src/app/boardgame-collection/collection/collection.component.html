@@ -1,23 +1,52 @@
 <form class="filter-flex-container" [formGroup]="formControl">
-  <mat-form-field appearance="fill">
+  <mat-form-field>
     <mat-label> Filter by name </mat-label>
     <input matInput formControlName="name">
   </mat-form-field>
   
-  <mat-form-field appearance="fill">
-    <mat-label> Filter by num. players </mat-label>
-    <input matInput formControlName="numPlayers" type="number">
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill">
-    <mat-label>Filter by weight</mat-label>
-    <mat-select matNativeControl formControlName="weight">
-      <mat-option value="1.5"> Light </mat-option>
-      <mat-option value="2.5"> Medium </mat-option>
-      <mat-option value="3.5"> Heavy </mat-option>
-      <mat-option value="4.5"> Extreme </mat-option>
+  <mat-form-field class="minorFilter">
+    <mat-label> Players </mat-label>
+    <mat-select matNativeControl formControlName="numPlayers">
+      <mat-option value="1"> 1 </mat-option>
+      <mat-option value="2"> 2 </mat-option>
+      <mat-option value="3"> 3 </mat-option>
+      <mat-option value="4"> 4 </mat-option>
+      <mat-option value="5"> 5 </mat-option>
+      <mat-option value="6"> 6 </mat-option>
+      <mat-option value="7"> 7 </mat-option>
+      <mat-option value="8"> 8 </mat-option>
     </mat-select>
   </mat-form-field>
+  
+  <mat-form-field class="minorFilter">
+    <mat-label> Time </mat-label>
+    <mat-select matNativeControl formControlName="time">
+      <mat-option value="15"> 15 min </mat-option>
+      <mat-option value="30"> 30 min </mat-option>
+      <mat-option value="45"> 45 min </mat-option>
+      <mat-option value="60"> 1 h </mat-option>
+      <mat-option value="90"> 1.5 h </mat-option>
+      <mat-option value="120"> 2 h </mat-option>
+      <mat-option value="180"> 3 h </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field class="mediumFilter" *ngIf="advancedFiltersToggled">
+    <mat-label> Category </mat-label>
+    <mat-select matNativeControl formControlName="categories" multiple>
+      <mat-option *ngFor="let category of BGG_CATEGORIES" [value]="category"> {{category}} </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field class="mediumFilter" *ngIf="advancedFiltersToggled">
+    <mat-label> Mechanic </mat-label>
+    <mat-select matNativeControl formControlName="mechanics" multiple>
+      <mat-option *ngFor="let mechanic of BGG_MECHANICS" [value]="mechanic"> {{mechanic}} </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <button mat-raised-button color="warn" (click)="resetForm()"> Clear </button>
+  <mat-slide-toggle (change)="toggleAdvancedFilters()" color="primary"> Advanced </mat-slide-toggle>
 </form>
 
 <div class="mat-elevation-z8">
