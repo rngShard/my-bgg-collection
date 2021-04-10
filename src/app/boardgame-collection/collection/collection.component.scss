@@ -53,12 +53,12 @@ th.attrs, td.attrs {
     mat-form-field {
         margin: auto .5em;
         // flex: 1;     // not used in order to have field of diff sizes
+        width: 10em;        
     }
-
-    .minorFilter {
+    mat-form-field.minorFilter {
         width: 5em;
     }
-    .mediumFilter {
+    mat-form-field.mediumFilter {
         width: 7.5em;
     }
 

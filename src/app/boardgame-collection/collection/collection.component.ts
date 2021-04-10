@@ -45,6 +45,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   expandedRow: BggBoardgameThing | null;
   formControl: AbstractControl;
   advancedFiltersToggled: boolean;
+  mobile: boolean;
   
   constructor(
     formBuilder: FormBuilder,
@@ -74,6 +75,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnInit() {
+    this.mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
+
     for (let availCol of this.availableColumns) {
       if (availCol.defaultToggled) {
         this.columnsToDisplay.push(availCol.colName);
