@@ -48,4 +48,4 @@ Thumbs.db
 # Extras
 config.json
 debug.log
-package-lock.json
+#package-lock.json <-- req. for ci
