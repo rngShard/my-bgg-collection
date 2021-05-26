@@ -46,6 +46,6 @@ testem.log
 Thumbs.db
 
 # Extras
-config.json
+#config.json    <-- required for CI
 debug.log
-package-lock.json
+#package-lock.json  <-- req. for CI

@@ -45,8 +45,11 @@
     </mat-select>
   </mat-form-field>
   
-  <button mat-raised-button color="warn" (click)="resetForm()"> Clear </button>
-  <mat-slide-toggle (change)="toggleAdvancedFilters()" color="primary"> Advanced </mat-slide-toggle>
+  <button mat-icon-button color="warn" (click)="resetForm()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+
+  <mat-slide-toggle *ngIf="!mobile" (change)="toggleAdvancedFilters()" color="primary"> Advanced </mat-slide-toggle>
 </form>
 
 <div class="mat-elevation-z8">
