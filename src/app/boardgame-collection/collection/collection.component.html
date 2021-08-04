@@ -112,7 +112,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="entryRow" (click)="test()"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="entryRow" (click)="openDetailsCardDialog(row)"></tr>
 
   </table>
   

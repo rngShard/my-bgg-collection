@@ -1,28 +1,20 @@
-mat-card {
-  max-width: 80%;
-  margin: 1em auto;
-
-  img {
-    object-fit: cover;
-    max-height: 30em;
-    
-    display: block;
-    max-width: 30em;
-
-    @media (min-width: 34.5em) {
-      margin: 0 auto 1em auto;
-     }
-  }
-  
-  mat-card-content {
-    max-height: 15em;
-    overflow: auto;
-  }
+h1 {
+  margin-bottom: .25em;
 }
 
-.card-avatar {
-  line-height: 40px;    // fixed as of mat-card anyways
-  text-align: center;
-  background-color: lightblue;
-  background-size: cover;
+.gameDescription {  
+  max-height: 15em;
+  overflow: auto;
+  margin-bottom: 1em;
+  background-position: center;
+}
+
+mat-form-field {
+  width: 10em;
+  margin-right: 1em;
+}
+
+#dialogActions {
+  display: block;
+  text-align: right;
 }

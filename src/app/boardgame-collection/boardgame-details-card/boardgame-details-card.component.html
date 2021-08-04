@@ -1,26 +1,42 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar class="card-avatar"> {{game.rank}} </div>
-    <mat-card-title>
-      <a [href]="gameUrl" target="_blank"> {{game.name}} </a> 
-    </mat-card-title>
-    <mat-card-subtitle>
-      <ng-container *ngIf="game.numPlayersMin != game.numPlayersMax"> {{game.numPlayersMin}} - {{game.numPlayersMax}} players, </ng-container>
-      <ng-container *ngIf="game.numPlayersMin == game.numPlayersMax"> {{game.numPlayersMin}} players, </ng-container>
-      <ng-container *ngIf="game.playingTimeMin != game.playingTimeMax"> {{game.playingTimeMin}} - {{game.playingTimeMax}} min, </ng-container>
-      <ng-container *ngIf="game.playingTimeMin == game.playingTimeMax"> {{game.playingTimeMin}} min, </ng-container>
-      {{game.playerAge}}+ years,
-      Weighted {{game.weightAverage}} / 5
-    </mat-card-subtitle>
-  </mat-card-header>
-  <!-- <img mat-card-image [src]="game.image"> -->
-  <mat-card-content>
+<h1 mat-dialog-title>
+  <a [href]="gameUrl" target="_blank"> {{game.name}} </a>
+</h1>
+
+<mat-dialog-content class="mat-typography">
+  <ul>
+    <ng-container *ngIf="game.numPlayersMin != game.numPlayersMax"><li> {{game.numPlayersMin}} - {{game.numPlayersMax}} players </li></ng-container>
+    <ng-container *ngIf="game.numPlayersMin == game.numPlayersMax"><li> {{game.numPlayersMin}} players </li></ng-container>
+    <ng-container *ngIf="game.playingTimeMin != game.playingTimeMax"><li> Playtime approx. {{game.playingTimeMin}} - {{game.playingTimeMax}} min </li></ng-container>
+    <ng-container *ngIf="game.playingTimeMin == game.playingTimeMax"><li> Playtime approx. {{game.playingTimeMin}} min </li></ng-container>
+    <li> {{game.playerAge}}+ years </li>
+    <li> Weighted {{game.weightAverage}} / 5 </li>
+  </ul>
+  <div class="gameDescription">
     <p [innerHTML]="game.description"></p>
-  </mat-card-content>
-  <mat-card-actions>
-    <mat-chip-list>
-      <mat-chip *ngFor="let category of game.categories" color="primary" selected> {{category}} </mat-chip>
-      <mat-chip *ngFor="let mechanic of game.mechanics" color="secondary" selected> {{mechanic}} </mat-chip>
-    </mat-chip-list>
-  </mat-card-actions>
-</mat-card>
+  </div>
+  <mat-chip-list>
+    <mat-chip *ngFor="let category of game.categories" color="primary" selected> {{category}} </mat-chip>
+    <mat-chip *ngFor="let mechanic of game.mechanics" color="secondary" selected> {{mechanic}} </mat-chip>
+  </mat-chip-list>
+</mat-dialog-content>
+<!-- [style.background-image]="gameImageUrl"> -->
+
+<div id="dialogActions" mat-dialog-actions>
+  <mat-form-field>
+    <mat-label> Select location </mat-label>
+    <mat-select>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label> Select players </mat-label>
+    <mat-select multiple>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button mat-dialog-close color="primary" (click)="logPlusOne()"> +1 </button>
+</div>
