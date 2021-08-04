@@ -142,4 +142,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     this.advancedFiltersToggled = !this.advancedFiltersToggled;
   }
 
+  test(): void {
+    window.alert('test');
+  }
 }
