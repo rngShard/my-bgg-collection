@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardgameDetailsCardComponent } from './boardgame-details-card.component';
+import { BoardgameDetailsDialogComponent } from './boardgame-details-dialog.component';
 
 describe('BoardgameDetailsCardComponent', () => {
-  let component: BoardgameDetailsCardComponent;
-  let fixture: ComponentFixture<BoardgameDetailsCardComponent>;
+  let component: BoardgameDetailsDialogComponent;
+  let fixture: ComponentFixture<BoardgameDetailsDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BoardgameDetailsCardComponent ]
+      declarations: [ BoardgameDetailsDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BoardgameDetailsCardComponent);
+    fixture = TestBed.createComponent(BoardgameDetailsDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

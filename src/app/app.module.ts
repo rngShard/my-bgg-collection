@@ -18,7 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { BoardgameDetailsCardComponent } from './boardgame-collection/boardgame-details-card/boardgame-details-card.component';
+import { BoardgameDetailsDialogComponent } from './boardgame-collection/boardgame-details-dialog/boardgame-details-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ArchiveComponent } from './boardgame-collection/archive/archive.component';
@@ -42,7 +42,7 @@ import { MatListModule } from '@angular/material/list';
     Http202Dialog,
     HeaderToolbarComponent,
     FooterComponent,
-    BoardgameDetailsCardComponent,
+    BoardgameDetailsDialogComponent,
     ArchiveComponent,
     PreorderedComponent,
     BoardgameSimpleCardComponent,

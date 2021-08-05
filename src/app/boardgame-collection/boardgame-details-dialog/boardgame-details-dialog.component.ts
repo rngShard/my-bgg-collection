@@ -5,11 +5,11 @@ import { BggBoardgameThing } from 'src/app/bgg-objects';
 import { Url } from 'url';
 
 @Component({
-  selector: 'app-boardgame-details-card',
-  templateUrl: './boardgame-details-card.component.html',
-  styleUrls: ['./boardgame-details-card.component.scss']
+  selector: 'app-boardgame-details-dialog',
+  templateUrl: './boardgame-details-dialog.component.html',
+  styleUrls: ['./boardgame-details-dialog.component.scss']
 })
-export class BoardgameDetailsCardComponent implements OnInit { 
+export class BoardgameDetailsDialogComponent implements OnInit { 
   game: BggBoardgameThing;
   gameUrl: String;
   gameImageUrl: SafeStyle;
