@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreorderedComponent } from './preordered.component';
+import { GameListSimple } from './game-list-simple.component';
 
-describe('PreorderedComponent', () => {
-  let component: PreorderedComponent;
-  let fixture: ComponentFixture<PreorderedComponent>;
+describe('GameListSimple', () => {
+  let component: GameListSimple;
+  let fixture: ComponentFixture<GameListSimple>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreorderedComponent ]
+      declarations: [ GameListSimple ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreorderedComponent);
+    fixture = TestBed.createComponent(GameListSimple);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

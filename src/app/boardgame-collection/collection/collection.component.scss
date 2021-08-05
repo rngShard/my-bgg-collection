@@ -2,28 +2,9 @@ table {
     width: 100%;
 }
 
-tr.detail-row {
-    height: 0;
-}
-
-tr.entry-row:not(.row-expanded-details):hover {
+tr.entryRow:hover {
     background: whitesmoke;
     cursor: pointer;
-}
-
-tr.entry-row:not(.row-expanded-details):active {
-    background: #efefef;
-    cursor: pointer;
-}
-
-.entry-row td {
-    border-bottom-width: 0;
-}
-
-.row-expanded-details {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
 }
 
 mat-form-field.thumbnail {

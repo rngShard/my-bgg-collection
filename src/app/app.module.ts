@@ -18,20 +18,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { BoardgameDetailsCardComponent } from './boardgame-collection/boardgame-details-card/boardgame-details-card.component';
+import { BoardgameDetailsDialogComponent } from './boardgame-collection/boardgame-details-dialog/boardgame-details-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ArchiveComponent } from './boardgame-collection/archive/archive.component';
-import { PreorderedComponent } from './boardgame-collection/preordered/preordered.component';
+import { GameListSimple } from './boardgame-collection/game-list-simple/game-list-simple.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { BoardgameSimpleCardComponent } from './boardgame-collection/boardgame-simple-card/boardgame-simple-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { PrevownedComponent } from './boardgame-collection/prevowned/prevowned.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CollectionComponent } from './boardgame-collection/collection/collection.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -41,11 +41,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     Http202Dialog,
     HeaderToolbarComponent,
     FooterComponent,
-    BoardgameDetailsCardComponent,
+    BoardgameDetailsDialogComponent,
     ArchiveComponent,
-    PreorderedComponent,
+    GameListSimple,
     BoardgameSimpleCardComponent,
-    PrevownedComponent,
     WishlistComponent,
     CollectionComponent
   ],
@@ -72,6 +71,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSidenavModule,
     MatExpansionModule,
     MatSlideToggleModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
   <table mat-table [dataSource]="dataSource" matSort>
     
     <ng-container matColumnDef="thumbnail">
-      <th mat-header-cell *matHeaderCellDef> Thumbnail </th>
+      <th mat-header-cell *matHeaderCellDef></th>
       <td class="thumbnail" mat-cell *matCellDef="let row">
         <img [src]="row.thumbnail" />
       </td>

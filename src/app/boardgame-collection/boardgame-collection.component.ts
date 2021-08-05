@@ -9,6 +9,9 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./boardgame-collection.component.scss']
 })
 export class BoardgameCollectionComponent implements OnInit {
+  AppSections = AppSections;
+  toShow: AppSections = null;
+
   boardgames: BggBoardgame[] = [];
   prevowned: BggBoardgame[] = [];
   fortrade: BggBoardgame[] = [];
@@ -31,6 +34,7 @@ export class BoardgameCollectionComponent implements OnInit {
           console.log(`App retrieved ${this.boardgames.length} boardgames.`)
   
           this.sortBoardgamesByCollection();
+          this.toShow = AppSections.Collection;
         })
       } else {
         console.error("ERROR: _bggApiService.getBGGCollection() returned HTTP != 200/202", response);
@@ -68,7 +72,6 @@ export class BoardgameCollectionComponent implements OnInit {
       window.location.reload();
     });
   }
-
 }
 
 @Component({
@@ -76,3 +79,11 @@ export class BoardgameCollectionComponent implements OnInit {
   templateUrl: 'http-202-dialog.html',
 })
 export class Http202Dialog {}
+
+export enum AppSections {
+  "Collection",
+  "Archive",
+  "Wishlist",
+  "Preordered",
+  "PrevOwned"
+}

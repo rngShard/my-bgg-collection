@@ -168,7 +168,12 @@ function fromNestedPollReturnRecommendations(BggXmlApiItemObjPollResults: any, k
   let voteOptions = [], ratios = [];
   for (let result of BggXmlApiItemObjPollResults) {
     let voteOption = result['$'][`${key}`];
-    
+
+    if (!result['result']) {
+      console.log(`In resolving poll-result ${result}, found results as 'undefined', because only single option`);
+      let onlyResult = result['$'][`${key}`];
+      return [onlyResult];
+    }
     let votesBest = +result['result'][0]['$']['numvotes'];
     let votesRecommended = +result['result'][1]['$']['numvotes'];
     let votesNotRecommended = +result['result'][2]['$']['numvotes'];

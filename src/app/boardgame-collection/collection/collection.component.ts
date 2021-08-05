@@ -8,6 +8,7 @@ import { AbstractControl, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BggApiService } from 'src/app/bgg-api.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { BoardgameDetailsDialogComponent } from '../boardgame-details-dialog/boardgame-details-dialog.component';
 
 @Component({
   selector: 'app-collection',
@@ -142,4 +143,7 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     this.advancedFiltersToggled = !this.advancedFiltersToggled;
   }
 
+  openDetailsCardDialog(row: BggBoardgameThing): void {
+    const dialogRef = this.dialog.open(BoardgameDetailsDialogComponent, { data: { game: row } });
+  }
 }

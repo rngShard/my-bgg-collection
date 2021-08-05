@@ -1,25 +1,26 @@
-button.miniFAB {
-  position: absolute;
-  z-index: 9;
-  top: 4px;   // mini-fab = 40px, tablist = 48px;
-}
-.upperLeftFABButton {
-  left: .5em;
-}
-
-.upperRightFABButton {
-  right: .5em;
-}
-
 mat-drawer {
   display: flex;
   height: 100%;
-  max-width: 80%;
+  width: 30%;
+  min-width: 20em;
   align-items: center;
   justify-content: center;
+
+  mat-list-item:hover {
+    background: lightgrey;
+    cursor: pointer;
+  }
+}
+
+.drawerBtn {
+  position: fixed;
+  left: .5em;
+  top: .5em;
+  z-index: 1;
 }
 
 mat-drawer-container {
   height: 100%;
   background-color: gainsboro;
 }
+

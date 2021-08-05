@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BggBoardgame } from 'src/app/bgg-objects';
 
 @Component({
-  selector: 'app-preordered',
-  templateUrl: './preordered.component.html',
-  styleUrls: ['./preordered.component.scss']
+  selector: 'app-game-list-simple',
+  templateUrl: './game-list-simple.component.html',
+  styleUrls: ['./game-list-simple.component.scss']
 })
-export class PreorderedComponent implements OnInit {
+export class GameListSimple implements OnInit {
   @Input() games: BggBoardgame[];
 
   constructor() {}
@@ -14,5 +14,4 @@ export class PreorderedComponent implements OnInit {
   ngOnInit(): void {
     // this.games.sort((a,b) => +b.yearPublished - +a.yearPublished);   // FIX: Implement sorting properly
   }
-
 }
