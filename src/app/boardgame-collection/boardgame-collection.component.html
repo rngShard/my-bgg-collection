@@ -1,13 +1,57 @@
 <mat-drawer-container>
-  <mat-drawer #leftDrawer mode="over">
-    <app-prevowned [games]="prevowned"></app-prevowned>
+  <mat-drawer #drawer mode="push">
+    <mat-list>
+      <div mat-subheader> Available Games </div>
+      <mat-list-item (click)="drawer.toggle(); toShow = AppSections.Collection;">
+        <mat-icon mat-list-icon>playlist_play</mat-icon>
+        <div mat-line> Collection </div>
+        <div mat-line> {{own.length}} games </div>
+      </mat-list-item>
+      <mat-list-item (click)="drawer.toggle(); toShow = AppSections.Archive">
+        <mat-icon mat-list-icon>playlist_add_check</mat-icon>
+        <div mat-line> Archive </div>
+        <div mat-line> {{fortrade.length}} games </div>
+      </mat-list-item>
+      <mat-list-item (click)="drawer.toggle(); toShow = AppSections.Preordered">
+        <mat-icon mat-list-icon>playlist_add</mat-icon>
+        <div mat-line> Preordered </div>
+        <div mat-line> {{preordered.length}} games </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader> Lists </div>
+      <mat-list-item (click)="drawer.toggle(); toShow = AppSections.Wishlist">
+        <mat-icon mat-list-icon>receipt_long</mat-icon>
+        <div mat-line> Wishlist </div>
+      </mat-list-item>
+      <mat-list-item (click)="drawer.toggle(); toShow = AppSections.PrevOwned">
+        <mat-icon mat-list-icon>list_alt</mat-icon>
+        <div mat-line> Previously Owned </div>
+      </mat-list-item>
+    </mat-list>
   </mat-drawer>
-  
-  <button class="miniFAB upperLeftFABButton" mat-mini-fab color="primary" matTooltip="Previously Owned" (click)="leftDrawer.toggle()">
-    <mat-icon>inventory</mat-icon>
-  </button>
+  <mat-drawer-content>
+    <button class="drawerBtn" mat-fab color="primary" matTooltip="Collections Menu" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-  <mat-tab-group mat-align-tabs="center" selectedIndex="1">
+    <ng-container *ngIf="toShow === AppSections.PrevOwned">
+      <app-prevowned [games]="prevowned"></app-prevowned>
+    </ng-container>
+    <ng-container *ngIf="toShow === AppSections.Archive">
+      <app-archive [games]="fortrade"></app-archive>
+    </ng-container>
+    <ng-container *ngIf="toShow === AppSections.Collection">
+      <app-collection [games]="own"></app-collection>
+    </ng-container>
+    <ng-container *ngIf="toShow === AppSections.Preordered">
+      <app-preordered [games]="preordered"></app-preordered>
+    </ng-container>
+    <ng-container *ngIf="toShow === AppSections.Wishlist">
+      <app-wishlist></app-wishlist>
+    </ng-container>
+  </mat-drawer-content>
+
+  <!-- <mat-tab-group mat-align-tabs="center" selectedIndex="1">
     <mat-tab label="Archive">
       <app-archive [games]="fortrade"></app-archive>
     </mat-tab>
@@ -17,13 +61,5 @@
     <mat-tab label="Preordered">
       <app-preordered [games]="preordered"></app-preordered>
     </mat-tab>
-  </mat-tab-group>
-
-  <button class="miniFAB upperRightFABButton" mat-mini-fab color="secondary" matTooltip="Wishlist" (click)="rightDrawer.toggle()">
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
-
-  <mat-drawer #rightDrawer mode="over" position="end">
-    <app-wishlist></app-wishlist>
-  </mat-drawer>
+  </mat-tab-group> -->
 </mat-drawer-container>

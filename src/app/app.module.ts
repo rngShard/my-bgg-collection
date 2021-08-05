@@ -32,6 +32,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CollectionComponent } from './boardgame-collection/collection/collection.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSidenavModule,
     MatExpansionModule,
     MatSlideToggleModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
