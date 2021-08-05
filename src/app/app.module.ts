@@ -22,12 +22,11 @@ import { BoardgameDetailsDialogComponent } from './boardgame-collection/boardgam
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ArchiveComponent } from './boardgame-collection/archive/archive.component';
-import { PreorderedComponent } from './boardgame-collection/preordered/preordered.component';
+import { GameListSimple } from './boardgame-collection/game-list-simple/game-list-simple.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { BoardgameSimpleCardComponent } from './boardgame-collection/boardgame-simple-card/boardgame-simple-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { PrevownedComponent } from './boardgame-collection/prevowned/prevowned.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CollectionComponent } from './boardgame-collection/collection/collection.component';
@@ -44,9 +43,8 @@ import { MatListModule } from '@angular/material/list';
     FooterComponent,
     BoardgameDetailsDialogComponent,
     ArchiveComponent,
-    PreorderedComponent,
+    GameListSimple,
     BoardgameSimpleCardComponent,
-    PrevownedComponent,
     WishlistComponent,
     CollectionComponent
   ],

@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { BggBoardgameThing } from 'src/app/bgg-objects';
-import { Url } from 'url';
 
 @Component({
   selector: 'app-boardgame-details-dialog',

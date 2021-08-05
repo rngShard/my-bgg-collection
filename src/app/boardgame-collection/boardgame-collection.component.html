@@ -34,32 +34,20 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <ng-container *ngIf="toShow === AppSections.PrevOwned">
-      <app-prevowned [games]="prevowned"></app-prevowned>
+    <ng-container *ngIf="toShow === AppSections.Collection">
+      <app-collection [games]="own"></app-collection>
     </ng-container>
     <ng-container *ngIf="toShow === AppSections.Archive">
       <app-archive [games]="fortrade"></app-archive>
     </ng-container>
-    <ng-container *ngIf="toShow === AppSections.Collection">
-      <app-collection [games]="own"></app-collection>
-    </ng-container>
     <ng-container *ngIf="toShow === AppSections.Preordered">
-      <app-preordered [games]="preordered"></app-preordered>
+      <app-game-list-simple [games]="preordered"></app-game-list-simple>
     </ng-container>
     <ng-container *ngIf="toShow === AppSections.Wishlist">
       <app-wishlist></app-wishlist>
     </ng-container>
+    <ng-container *ngIf="toShow === AppSections.PrevOwned">
+      <app-game-list-simple [games]="prevowned"></app-game-list-simple>
+    </ng-container>
   </mat-drawer-content>
-
-  <!-- <mat-tab-group mat-align-tabs="center" selectedIndex="1">
-    <mat-tab label="Archive">
-      <app-archive [games]="fortrade"></app-archive>
-    </mat-tab>
-    <mat-tab label="Collection">
-      <app-collection [games]="own"></app-collection>
-    </mat-tab>
-    <mat-tab label="Preordered">
-      <app-preordered [games]="preordered"></app-preordered>
-    </mat-tab>
-  </mat-tab-group> -->
 </mat-drawer-container>
