@@ -16,6 +16,7 @@ mat-drawer {
   position: fixed;
   left: .5em;
   top: .5em;
+  z-index: 1;
 }
 
 mat-drawer-container {
