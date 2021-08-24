@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BggBoardgame } from '../bgg-objects';
 import { BggApiService } from '../bgg-api.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { Http202Dialog } from '../http202dialog/http202dialog.component';
 
 @Component({
   selector: 'app-boardgame-collection',
@@ -22,6 +25,7 @@ export class BoardgameCollectionComponent implements OnInit {
 
   constructor(
     private _bggApiService: BggApiService,
+    private _snackbar: MatSnackBar,
     public dialog: MatDialog
   ) {}
   
@@ -31,6 +35,7 @@ export class BoardgameCollectionComponent implements OnInit {
       if (response.status === 202) {
         this.open202Dialog();
       } else if (response.status === 200) {
+        this._snackbar.open("Collection retrieved from BGG");
         const stringXmlData = response.body;
         this._bggApiService.parseBGGCollectionXML(stringXmlData).then((xmlData: BggBoardgame[]) => {
           this.boardgames = xmlData;
@@ -76,12 +81,6 @@ export class BoardgameCollectionComponent implements OnInit {
     });
   }
 }
-
-@Component({
-  selector: 'http-202-dialog',
-  templateUrl: 'http-202-dialog.html',
-})
-export class Http202Dialog {}
 
 export enum AppSections {
   "Collection",
