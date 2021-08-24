@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { BggApiService } from '../bgg-api.service';
 import { BggBoardgame } from '../bgg-objects';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Http202Dialog } from '../http202dialog/http202dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-wishlist',
@@ -18,7 +20,11 @@ export class WishlistComponent implements OnInit {
     "Wishlist 4 (Thinking about it)" 
   ]
 
-  constructor(private _bggApiService: BggApiService) {
+  constructor(
+    private _bggApiService: BggApiService,
+    private _snackbar: MatSnackBar,
+    public dialog: MatDialog
+  ) {
     this.wishlists = [
       { "prio": 1, "games": [] },
       { "prio": 2, "games": [] },
@@ -36,9 +42,9 @@ export class WishlistComponent implements OnInit {
   retrieveAndProcessWishlist(prio: number): void {
     this._bggApiService.getBGGWishlist(prio).subscribe(response => {
       if (response.status === 202) {
-        console.log("HTTP 202");
-        // setTimeout(this.retrieveAndProcessWishlist, 1000);
+        this.open202Dialog();
       } else if (response.status === 200) {
+        this._snackbar.open("Wishlist retrieved from BGG");
         const stringXmlData = response.body;
         this._bggApiService.parseBGGCollectionXML(stringXmlData).then((xmlData: BggBoardgame[]) => {
           console.log(`App retrieved ${xmlData.length} items for wishlist (prio: ${prio}).`)
@@ -52,4 +58,11 @@ export class WishlistComponent implements OnInit {
     });
   }
 
+  open202Dialog() {
+    const dialogRef = this.dialog.open(Http202Dialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      window.location.reload();
+    });
+  }
 }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { Http202Dialog, BoardgameCollectionComponent } from './boardgame-collection/boardgame-collection.component';
+import { BoardgameCollectionComponent } from './boardgame-collection/boardgame-collection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -15,8 +15,6 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
-import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BoardgameDetailsDialogComponent } from './boardgame-collection/boardgame-details-dialog/boardgame-details-dialog.component';
 import { MatCardModule } from '@angular/material/card';
@@ -32,6 +30,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { CollectionComponent } from './boardgame-collection/collection/collection.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { Http202Dialog } from './http202dialog/http202dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -39,8 +41,6 @@ import { MatListModule } from '@angular/material/list';
     AppComponent,
     BoardgameCollectionComponent,
     Http202Dialog,
-    HeaderToolbarComponent,
-    FooterComponent,
     BoardgameDetailsDialogComponent,
     ArchiveComponent,
     GameListSimple,
@@ -72,8 +72,12 @@ import { MatListModule } from '@angular/material/list';
     MatExpansionModule,
     MatSlideToggleModule,
     MatListModule,
+    MatSnackBarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 1000}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
