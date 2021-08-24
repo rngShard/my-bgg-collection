@@ -15,8 +15,6 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
-import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BoardgameDetailsDialogComponent } from './boardgame-collection/boardgame-details-dialog/boardgame-details-dialog.component';
 import { MatCardModule } from '@angular/material/card';
@@ -39,8 +37,6 @@ import { MatListModule } from '@angular/material/list';
     AppComponent,
     BoardgameCollectionComponent,
     Http202Dialog,
-    HeaderToolbarComponent,
-    FooterComponent,
     BoardgameDetailsDialogComponent,
     ArchiveComponent,
     GameListSimple,

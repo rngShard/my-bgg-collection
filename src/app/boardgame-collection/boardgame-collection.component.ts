@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BggBoardgame } from '../bgg-objects';
 import { BggApiService } from '../bgg-api.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./boardgame-collection.component.scss']
 })
 export class BoardgameCollectionComponent implements OnInit {
+  @Input() username: String;
+  bggUserURL: String;
   AppSections = AppSections;
   toShow: AppSections = null;
 
@@ -24,6 +26,7 @@ export class BoardgameCollectionComponent implements OnInit {
   ) {}
   
   ngOnInit() {
+    this.bggUserURL = `https://boardgamegeek.com/user/${this.username}`;
     this._bggApiService.getBGGCollection().subscribe(response => {
       if (response.status === 202) {
         this.open202Dialog();
