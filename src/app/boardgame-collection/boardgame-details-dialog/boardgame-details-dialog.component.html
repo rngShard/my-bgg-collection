@@ -14,11 +14,15 @@
   <div class="gameDescription">
     <p [innerHTML]="game.description"></p>
   </div>
-  <mat-chip-list>
-    <mat-chip *ngFor="let category of game.categories" color="primary" selected> {{category}} </mat-chip>
-    <mat-chip *ngFor="let mechanic of game.mechanics" color="secondary" selected> {{mechanic}} </mat-chip>
-  </mat-chip-list>
+  <div class="h-scroll-list">
+    <b>Categories</b>:
+    <div *ngFor="let category of game.categories" class="chip"> {{category}} </div>
+  </div>
+  <div class="h-scroll-list">
+    <b>Mechanics</b>:
+    <div *ngFor="let mechanic of game.mechanics" class="chip"> {{mechanic}} </div>
+  </div>
 </mat-dialog-content>
 <!-- [style.background-image]="gameImageUrl"> -->
 
-<div id="dialogActions" mat-dialog-actions></div>
+<!-- <div id="dialogActions" mat-dialog-actions></div> -->

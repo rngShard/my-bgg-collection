@@ -9,16 +9,28 @@ h1 {
   background-position: center;
 }
 
-mat-form-field {
-  width: 10em;
-  margin-right: 1em;
-}
-
 #dialogActions {
   display: block;
   text-align: right;
 }
 
 mat-dialog-content {
-  overflow: unset;
+  // overflow: unset;
+
+  .h-scroll-list {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
+
+    .chip {
+      flex: 0 0 auto;
+      padding: .25em .5em;
+      border: 1px solid black;
+      border-radius: 1em;
+      margin-left: .5em;
+    }
+  }
+  // .h-scroll-list::-webkit-scrollbar {    display: none;}
 }
