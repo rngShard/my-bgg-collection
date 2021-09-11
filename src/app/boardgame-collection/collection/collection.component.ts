@@ -38,9 +38,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnChanges {
     new ColumnDisplayToggleItem('playingTime', 'Expected playing time'),
     new ColumnDisplayToggleItem('playerAge', 'Recommended player age'),
     new ColumnDisplayToggleItem('ratingAverage', 'Average rating on BGG'),
-    new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG'),
+    new ColumnDisplayToggleItem('weightAverage', 'Average weight (complexity / difficulty) on BGG', true),
     new ColumnDisplayToggleItem('rank', 'Rank on BGG', true),
-    new ColumnDisplayToggleItem('numPlays', 'My logged plays number on BGG', true)
   ];
   columnsToDisplay = ['thumbnail', 'name'];
   expandedRow: BggBoardgameThing | null;
