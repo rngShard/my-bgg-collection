@@ -34,6 +34,7 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { Http202Dialog } from './http202dialog/http202dialog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { environment } from '../environments/environment';
     MatListModule,
     MatSnackBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    MatGridListModule,
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 1000}}

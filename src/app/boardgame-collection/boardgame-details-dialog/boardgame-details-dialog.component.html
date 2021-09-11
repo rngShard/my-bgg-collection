@@ -3,6 +3,18 @@
 </h1>
 
 <mat-dialog-content class="mat-typography">
+  <mat-grid-list cols="2">
+    <mat-grid-tile>
+      <img [src]="game.image">
+      <!-- [style.background-image]="gameImageUrl"> -->
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="gameDescription">
+        <p [innerHTML]="game.description"></p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
   <ul>
     <ng-container *ngIf="game.numPlayersMin != game.numPlayersMax"><li> {{game.numPlayersMin}} - {{game.numPlayersMax}} players </li></ng-container>
     <ng-container *ngIf="game.numPlayersMin == game.numPlayersMax"><li> {{game.numPlayersMin}} players </li></ng-container>
@@ -11,9 +23,6 @@
     <li> {{game.playerAge}}+ years </li>
     <li> Weighted {{game.weightAverage}} / 5 </li>
   </ul>
-  <div class="gameDescription">
-    <p [innerHTML]="game.description"></p>
-  </div>
   <div class="h-scroll-list">
     <b>Categories</b>:
     <div *ngFor="let category of game.categories" class="chip"> {{category}} </div>
@@ -23,6 +32,5 @@
     <div *ngFor="let mechanic of game.mechanics" class="chip"> {{mechanic}} </div>
   </div>
 </mat-dialog-content>
-<!-- [style.background-image]="gameImageUrl"> -->
 
 <!-- <div id="dialogActions" mat-dialog-actions></div> -->
