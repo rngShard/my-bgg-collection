@@ -17,10 +17,6 @@
       <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Published </th>
       <td class="attrs" mat-cell *matCellDef="let row"> {{row.yearPublished}} </td>
     </ng-container>
-    <ng-container matColumnDef="numPlays">
-      <th class="attrs" mat-header-cell *matHeaderCellDef mat-sort-header> Played </th>
-      <td class="attrs" mat-cell *matCellDef="let row"> {{row.numPlays}} </td>
-    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>

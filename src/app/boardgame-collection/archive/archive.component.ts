@@ -16,7 +16,7 @@ export class ArchiveComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild(MatSort) sort: MatSort;
   
   dataSource: MatTableDataSource<BggBoardgame>;
-  columnsToDisplay = ['thumbnail', 'name', 'yearPublished', 'numPlays'];
+  columnsToDisplay = ['thumbnail', 'name', 'yearPublished'];
 
   constructor() {
     this.dataSource = new MatTableDataSource([]);

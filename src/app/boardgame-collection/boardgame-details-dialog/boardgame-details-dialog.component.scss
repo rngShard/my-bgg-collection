@@ -2,23 +2,41 @@ h1 {
   margin-bottom: .25em;
 }
 
-.gameDescription {  
-  max-height: 15em;
-  overflow: auto;
-  margin-bottom: 1em;
-  background-position: center;
-}
-
-mat-form-field {
-  width: 10em;
-  margin-right: 1em;
-}
-
 #dialogActions {
   display: block;
   text-align: right;
 }
 
 mat-dialog-content {
-  overflow: unset;
+  // overflow: unset;
+
+  .h-scroll-list {
+    margin: .5em 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
+
+    .chip {
+      flex: 0 0 auto;
+      padding: .25em .5em;
+      border: 1px solid black;
+      border-radius: 1em;
+      margin-left: .5em;
+    }
+  }
+  // .h-scroll-list::-webkit-scrollbar {    display: none;}
+
+  img {
+    max-width:90%;
+    max-height:90%;
+    height: auto;
+    width:auto;
+  }
+  
+  .gameDescription {  
+    max-height: 90%;
+    overflow: auto;
+    background-position: center;
+  }
 }

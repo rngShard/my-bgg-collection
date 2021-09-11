@@ -1,8 +1,7 @@
 mat-drawer {
   display: flex;
   height: 100%;
-  width: 30%;
-  min-width: 20em;
+  width: 20em;
   align-items: center;
   justify-content: center;
   background: lightgray;
@@ -28,6 +27,7 @@ mat-drawer-container {
 .iconNavFooter {
   position: absolute;
   bottom: 0;
+  margin-bottom: 1em;
   width: 15em;
   left: 50%;
   margin-left: -7.5em;

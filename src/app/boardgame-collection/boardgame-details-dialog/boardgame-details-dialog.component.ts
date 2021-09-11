@@ -23,8 +23,4 @@ export class BoardgameDetailsDialogComponent implements OnInit {
     this.gameUrl = `https://boardgamegeek.com/boardgame/${this.game.objectid}`;
     this.gameImageUrl = this.sanitization.bypassSecurityTrustStyle(`url('${this.game.image}')`);
   }
-
-  logPlusOne(): void {
-    window.alert('TODO');
-  }
 }
